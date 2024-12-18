@@ -6,8 +6,6 @@ public class Main {
 
         int n = sc.nextInt();
 
-        // List<List<Integer>> lst = new ArrayList<>();
-
         int[][] lst = new int[n][n];
         
         int tmp = 1;
@@ -15,15 +13,15 @@ public class Main {
         int x = n - 1;
         int y = n - 1;
 
-        while (tmp < n * n){
+        while (y >= 0 && x >= 0 && tmp <= n * n){
             while (x >= 0){
                 lst[x][y] = tmp;
-                tmp ++;
+                tmp++;
                 x--;
             }
             x++;
             y--; 
-            while (x < n){
+            while (x < n && y >= 0){
                 lst[x][y] = tmp;
                 tmp++;
                 x++;

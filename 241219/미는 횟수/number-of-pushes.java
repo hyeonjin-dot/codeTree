@@ -11,13 +11,13 @@ public class Main {
 
         int len = str.length();
         int idx = -1;
-        for (int i = 0; i < len; i++){
+        for (int i = len - 1; i > 0; i--){
             StringBuilder pushed = new StringBuilder();
             pushed.append(str.substring(i, len));
             pushed.append(str.substring(0, i));
 
             if (pushed.toString().equals(ck)){
-                idx = i;
+                idx = len - i;
                 break;
             }
         }

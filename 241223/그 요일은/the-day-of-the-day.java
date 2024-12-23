@@ -30,10 +30,11 @@ public class Main {
         for (int i = 0; i < m2 - 1; i++)
             secDate += mon[i];
 
-        int diff = secDate - firDate;
+        int diff = secDate - firDate + 1;
 
         int res = diff / 7;
-        if (weekNum > 0 && diff % 7 > weekNum)
+        int remain = diff % 7;
+        if (weekNum < remain)
             res++;
         System.out.print(res);
 

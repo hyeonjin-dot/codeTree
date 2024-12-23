@@ -50,13 +50,18 @@ public class Main {
                         .thenComparingInt((Info info)->info.mon)
                         .thenComparingInt((Info info)->info.date));
 
+        StringBuilder printMon = new StringBuilder();
         if (lst.get(0).mon < 10)
-            System.out.print(lst.get(0).year + "-0" + lst.get(0).mon + "-" + 
-                    lst.get(0).date + " " 
-                    + lst.get(0).day + " "+ lst.get(0).weather);
-        else
-            System.out.print(lst.get(0).year + "-" + lst.get(0).mon + "-" + 
-                    lst.get(0).date + " " 
+            printMon.append("0");
+        printMon.append(Integer.toString(lst.get(0).mon));
+        StringBuilder printDate = new StringBuilder();
+        if (lst.get(0).date < 10)
+            printDate.append("0");
+        printDate.append(Integer.toString(lst.get(0).date));
+
+          
+        System.out.print(lst.get(0).year + "-" + printMon.toString() + "-" + 
+                    printDate.toString() + " " 
                     + lst.get(0).day + " "+ lst.get(0).weather);
     }
 }

@@ -33,7 +33,7 @@ public class Main {
         int diff = secDate - firDate;
 
         int res = diff / 7;
-        if (weekNum > 0)
+        if (weekNum > 0 && diff % 7 > weekNum)
             res++;
         System.out.print(res);
 

@@ -9,15 +9,16 @@ public class Main {
         int firDate = d1;
         int m2 = sc.nextInt();
         int d2 = sc.nextInt();
+        sc.nextLine();
         int secDate = d2;
         String date = sc.nextLine().trim();
 
         int[] mon = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        String week = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
-        int weekNum;
+        String[] week = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+        int weekNum = 0;
 
         for (int i = 0; i < 7; i++){
-            if (date.equals(week[i])){
+            if (week[i].equals(date)){
                 weekNum = i;
                 break;
             }

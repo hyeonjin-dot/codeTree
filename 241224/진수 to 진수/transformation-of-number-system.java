@@ -19,18 +19,13 @@ public class Main {
         }
         ten += (tmp % 10) * (int)Math.pow(a, idx);
         
-        tmp = 0;
-        idx = 0;
-        // System.out.println(ten);
-        while (ten >= b){
-            tmp += (ten % b) * (int)Math.pow(10, idx);
-            idx++;
-            // System.out.println(ten % b);
-            // tmp *= 10;
+        List<Integer> result = new ArrayList<>();
+        while (ten > 0) {
+            result.add(ten % b);
             ten /= b;
-            // System.out.println(ten);
         }
-        tmp += (ten % b) * (int)Math.pow(10, idx);
-        System.out.print(tmp);
+        
+        for (int i = result.size() - 1; i >= 0; i--)
+            System.out.print(result.get(i));
     }
 }

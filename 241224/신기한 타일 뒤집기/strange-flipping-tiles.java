@@ -44,14 +44,14 @@ public class Main {
             } else if (lst.get(i).way == 1){
                 black += lst.get(i).cnt;
                 white -= lst.get(i).cnt;
-                if (white < 0)
-                    white = 0;
             } else{
                 white += lst.get(i).cnt;
                 black -= lst.get(i).cnt;
-                if (black < 0)
-                    black = 0;
             }
+
+            black = Math.max(0, black);
+            white = Math.max(0, white);
+
             if (i > 0 && lst.get(i).way == lst.get(i - 1).way){
                 if (lst.get(i).way == 1)
                     black--;

@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class Main {
-    public static int[] tiles = new int[101];
     public static int black;
     public static int white;
 
@@ -40,6 +39,8 @@ public class Main {
             if (i == 0){
                 if (lst.get(i).way == 1)
                     black += lst.get(i).cnt;
+                else
+                    white += lst.get(i).cnt;
             } else if (lst.get(i).way == 1){
                 black += lst.get(i).cnt;
                 white -= lst.get(i).cnt;

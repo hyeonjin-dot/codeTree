@@ -12,7 +12,7 @@ public class Main {
             int start = sc.nextInt() + 100;
             int end = sc.nextInt() + 100;
 
-            for (int j = start; j <= end; j++)
+            for (int j = start; j < end; j++)
                 line[j]++;
         }
 

@@ -20,14 +20,17 @@ public class Main {
         ten += (tmp % 10) * Math.pow(a, idx);
         
         tmp = 0;
-        
+        idx = 0;
+        // System.out.println(ten);
         while (ten >= b){
-            tmp += (ten % b);
-            tmp *= 10;
+            tmp += (ten % b) * Math.pow(10, idx);
+            idx++;
+            // System.out.println(ten % b);
+            // tmp *= 10;
             ten /= b;
             // System.out.println(ten);
         }
-        tmp += (ten % b);
+        tmp += (ten % b) * Math.pow(10, idx);
         System.out.print(tmp);
     }
 }

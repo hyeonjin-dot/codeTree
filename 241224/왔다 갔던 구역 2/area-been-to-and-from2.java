@@ -32,7 +32,7 @@ public class Main {
 
         int idx = 1000;
         int tmp_way = 0;
-        lst[idx]++;
+
         for (Word word : command){
             if (word.way == 1){
                 if (tmp_way == -1)

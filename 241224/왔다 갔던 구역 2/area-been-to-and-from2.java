@@ -31,22 +31,33 @@ public class Main {
         }
 
         int idx = 1000;
+        int tmp_way = 0;
+        lst[idx]++;
         for (Word word : command){
             if (word.way == 1){
+                if (tmp_way == -1)
+                    idx++;
                 for (int i = 0; i < word.cnt; i++){
+                    // System.out.println("R " + idx);
                     lst[idx]++;
                     idx++;
                 }
+                tmp_way = 1;
             }else{
+                if (tmp_way == 1)
+                    idx--;
                 for (int i = 0; i < word.cnt; i++){
+                    // System.out.println("L " + idx);
                     lst[idx]++;
                     idx--;
                 }
+                tmp_way = -1;
             }
+            // System.out.println(idx);
         }
         idx = 0;
         for (int i = 0; i < 2001; i++){
-            if (lst[i] >= 2)
+            if (lst[i] > 1)
                 idx++;
         }
         System.out.print(idx);

@@ -51,6 +51,12 @@ public class Main {
                 if (black < 0)
                     black = 0;
             }
+            if (i > 0 && lst.get(i).way == lst.get(i - 1).way){
+                if (lst.get(i).way == 1)
+                    black--;
+                else
+                    white--;
+            }
         }
 
         System.out.print(white + " " + black);

@@ -43,7 +43,7 @@ public class Main {
                     else
                         bl[idx]++;
                     if(wh[idx] >= 2 && bl[idx] >= 2)
-                        color[idx] = 0;
+                        color[idx] = 2;
                     else
                         color[idx] = word.way;
                     idx += word.way;
@@ -57,7 +57,7 @@ public class Main {
                         else
                             bl[idx]++;
                         if(wh[idx] >= 2 && bl[idx] >= 2)
-                            color[idx] = 0;
+                            color[idx] = 2;
                         else
                             color[idx] = word.way;
                         idx += word.way;
@@ -71,7 +71,7 @@ public class Main {
         int black = 0;
         int white = 0;
         for (int i = 0; i < 200001; i++){
-            if (wh[idx] >= 2 && bl[idx] >= 2)
+            if (wh[i] >= 2 && bl[i] >= 2)
                 gray++;
             if (color[i] == 1)
                 black++;

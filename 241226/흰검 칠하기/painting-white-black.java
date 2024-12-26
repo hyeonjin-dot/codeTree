@@ -36,35 +36,18 @@ public class Main {
         int idx = 100000;
         int tmp_way = 0;
         for (Word word : lst){
-            if (tmp_way == 0){
-                for (int i = 0; i < word.cnt; i++){
-                    if (word.way == -1)
-                        wh[idx]++;
-                    else
-                        bl[idx]++;
-                    if(wh[idx] >= 2 && bl[idx] >= 2)
-                        color[idx] = 2;
-                    else
-                        color[idx] = word.way;
+            for (int i = 0; i < word.cnt; i++){
+                if (word.way == -1)
+                    wh[idx]++;
+                else
+                    bl[idx]++;
+                if(wh[idx] >= 2 && bl[idx] >= 2)
+                    color[idx] = 2;
+                else
+                    color[idx] = word.way;
+                if (i < word.cnt - 1)
                     idx += word.way;
-                }
-            }else {
-                if (tmp_way != word.way)
-                    idx += word.way;
-                    for (int i = 0; i < word.cnt; i++){
-                        if (word.way == -1)
-                            wh[idx]++;
-                        else
-                            bl[idx]++;
-                        if(wh[idx] >= 2 && bl[idx] >= 2)
-                            color[idx] = 2;
-                        else
-                            color[idx] = word.way;
-                        idx += word.way;
-                    }
-                
             }
-            tmp_way = word.way;
         }
 
         int gray = 0;

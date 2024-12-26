@@ -1,7 +1,8 @@
 import java.util.*;
 
 public class Main {
-    public static int[] ck = new int[200001];
+    public static int[] bl = new int[200001];
+    public static int[] wh = new int[200001];
     public static int[] color = new int[200001];
 
     public static class Word{
@@ -37,25 +38,31 @@ public class Main {
         for (Word word : lst){
             if (tmp_way == 0){
                 for (int i = 0; i < word.cnt; i++){
-                    ck[idx]++;
-                    if(ck[idx] >= 4)
+                    if (word.way == -1)
+                        wh[idx]++;
+                    else
+                        bl[idx]++;
+                    if(wh[idx] >= 2 && bl[idx] >= 2)
                         color[idx] = 0;
                     else
                         color[idx] = word.way;
                     idx += word.way;
                 }
             }else {
-                if (tmp_way != word.way){
+                if (tmp_way != word.way)
                     idx += word.way;
                     for (int i = 0; i < word.cnt; i++){
-                        ck[idx]++;
-                        if(ck[idx] >= 4)
+                        if (word.way == -1)
+                            wh[idx]++;
+                        else
+                            bl[idx]++;
+                        if(wh[idx] >= 2 && bl[idx] >= 2)
                             color[idx] = 0;
                         else
                             color[idx] = word.way;
                         idx += word.way;
                     }
-                }
+                
             }
             tmp_way = word.way;
         }
@@ -64,7 +71,7 @@ public class Main {
         int black = 0;
         int white = 0;
         for (int i = 0; i < 200001; i++){
-            if (ck[i] >= 4)
+            if (wh[idx] >= 2 && bl[idx] >= 2)
                 gray++;
             if (color[i] == 1)
                 black++;

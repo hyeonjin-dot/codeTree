@@ -30,6 +30,9 @@ public class Main {
             j++;
         }
 
+        if (changed == 0)
+            res--;
+
         System.out.print(res);
     }
 }

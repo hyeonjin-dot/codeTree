@@ -8,6 +8,12 @@ public class Main {
         StringBuilder str = new StringBuilder();
 
         int changed = 0;
+
+        if (n.length() == 1 && n.charAt(0) == '1'){
+            System.out.print(0);
+            return ;
+        }
+
         for (int i = 0; i < n.length(); i++){
             if (n.charAt(i) == '0' && changed == 0){
                 str.append('1');

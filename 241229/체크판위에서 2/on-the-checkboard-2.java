@@ -9,7 +9,7 @@ public class Main {
 
         sc.nextLine();
 
-        char[][] lst = new char[r][c];
+        int[][] lst = new int[r][c];
         for (int i = 0; i < r; i++){
             String tmp = sc.nextLine().trim();
             int idx = 0;
@@ -17,7 +17,7 @@ public class Main {
                 if (tmp.charAt(j) == ' ')
                     continue;
                 else
-                    lst[i][idx++] = tmp.charAt(j);
+                    lst[i][idx++] = tmp.charAt(j) == 'W' ? 0 : 1 ;
             }
         }
         int cnt = 0;
@@ -26,7 +26,8 @@ public class Main {
                 if (lst[0][0] != lst[i][j]){
                     for (int x = i + 1; x < r - 1; x++){
                         for (int y = j + 1; y < c - 1; y++){
-                            if (lst[x][y] != lst[i][j])
+                            if (lst[x][y] != lst[i][j] 
+                                && lst[0][0] != lst[r - 1][c - 1])
                                 cnt++;
                         }
                     }

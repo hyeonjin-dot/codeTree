@@ -13,7 +13,7 @@ public class Main {
             lst[i] = tmp;
         }
 
-        int min = 200301;
+        int min = 2147483647;
         
         for (int i = 0; i < n; i++){ // 여기서 시작 가정
             int cnt = 0;

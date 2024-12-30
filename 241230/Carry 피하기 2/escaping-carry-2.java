@@ -15,8 +15,8 @@ public class Main {
         int max = 0;
 
         for (int i = 0; i < n - 2; i++){
-            for (int j = 1; j < n - 1; j++){
-                for (int k = 2; k < n; k++){
+            for (int j = i + 1; j < n - 1; j++){
+                for (int k = j + 1; k < n; k++){
                     if ((lst[i] % 10) + (lst[j] % 10) +(lst[k] % 10) < 10){
                         if (lst[i] % 100 + lst[j] % 100 + lst[k] % 100 < 100){
                             if (lst[i] % 1000 + lst[j] % 1000 

@@ -71,6 +71,15 @@ public class Main {
             x++;
             y--;
         }
+
+        if (cnt == 5 && board[x][y] == 1){
+            white[0] = x - 1;
+            white[1] = y + 3;
+        }else if (cnt == 5){
+            black[0] = x - 1;
+            black[1] = y + 3;
+        }
+
         return cnt;
     }
 

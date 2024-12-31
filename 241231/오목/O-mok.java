@@ -18,10 +18,10 @@ public class Main {
 
         if (cnt == 5 && board[x][y] == 1){
             white[0] = x;
-            white[1] = y;
+            white[1] = y - 1;
         }else if (cnt == 5){
             black[0] = x;
-            black[1] = y;
+            black[1] = y - 1;
         }
 
         return cnt;
@@ -35,10 +35,10 @@ public class Main {
         }
                 
         if (cnt == 5 && board[x][y] == 1){
-            white[0] = x;
+            white[0] = x - 1;
             white[1] = y;
         }else if (cnt == 5){
-            black[0] = x;
+            black[0] = x - 1;
             black[1] = y;
         }
 
@@ -54,11 +54,11 @@ public class Main {
         }
         
         if (cnt == 5 && board[x][y] == 1){
-            white[0] = x;
-            white[1] = y;
+            white[0] = x - 1;
+            white[1] = y - 1;
         }else if (cnt == 5){
-            black[0] = x;
-            black[1] = y;
+            black[0] = x - 1;
+            black[1] = y - 1;
         }
 
         return cnt;
@@ -106,11 +106,11 @@ public class Main {
 
         if (black_max == 5){
             System.out.println(1);
-            System.out.print(white[0] - 1 + " " + (white[1] - 1));
+            System.out.print(white[0] + " " + (white[1]));
         }
         else if (white_max == 5){
             System.out.println(2);
-            System.out.print(black[0] - 1 + " " + (black[1] - 1));
+            System.out.print(black[0] + " " + (black[1]));
         }else
             System.out.print(0);
         

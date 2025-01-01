@@ -15,7 +15,7 @@ public class Main {
             lst[i] = tmp;
         }
 
-        int min_price = 2001;
+        int min_price = Integer.MAX_VALUE;
         for (int i = 0; i < n - t; i++){
             int tmp_price = 0;
             for (int j = i; j < i + t; j++){

@@ -22,7 +22,11 @@ public class Main {
             sum2 = lst[1] + lst[3];
             if (sum1 == sum2 || sum2 == sum3 || sum1 == sum3){
                 sum1 = lst[0] + lst[1];
-                sum2 = lst[2] + lst[3];   
+                sum2 = lst[2] + lst[3];
+                if (sum1 == sum2 || sum2 == sum3 || sum1 == sum3){
+                    System.out.print(-1);
+                    return ;
+                }
             }
         }
 

@@ -21,6 +21,9 @@ public class Main {
                 if (lst[i][1] <= lst[j][1] && lst[i][0] >= lst[j][0]){
                     checked[i] = true;
                     checked[j] = true;
+                }else if (lst[i][1] >= lst[j][1] && lst[i][0] <= lst[j][0]){
+                    checked[i] = true;
+                    checked[j] = true;
                 }
             }
         }
@@ -30,6 +33,7 @@ public class Main {
             if (!checked[i])
                 res++;
         }
+
         System.out.print(res);
     }
 }

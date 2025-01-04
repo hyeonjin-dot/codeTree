@@ -11,7 +11,7 @@ public class Main {
 
         int [][] taken = new int[n][m]; // n번 사람이 m번 치즈를 몇초에 먹었는지
         int [] ill = new int[n]; // n번째 사람이 언제 아프기 시작했는지 
-        int [] medicine = new int[n]; // 약먹어야하면 추가
+        boolean [] medicine = new boolean[n]; // 약먹어야하면 추가
         boolean [] spoil = new boolean[m]; // 치즈가 상했나요
 
         for (int i = 0; i < d; i++){
@@ -44,13 +44,13 @@ public class Main {
 
             for (int j = 0; j < n; j++){
                 if (taken[j][i] > 0)
-                    medicine[j] = 1;
+                    medicine[j] = true;
             }
         }
 
         int res = 0;
-        for (int i = 0; i < n; i++){
-            if (medicine[i] == 1)
+        for (boolean medi : medicine){
+            if (medi)
                 res++;
         }
 

@@ -17,7 +17,7 @@ public class Main {
         int sum = 0;
         int idx = -1;
         boolean used = false;
-        while (idx < n && sum <= b){
+        while (idx < n - 1 && sum <= b){
             idx++;
             if (sum + lst[idx] > b && !used){
                 used = true;

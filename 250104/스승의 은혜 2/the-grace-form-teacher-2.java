@@ -15,17 +15,20 @@ public class Main {
         Arrays.sort(lst);
 
         int sum = 0;
-        int idx = -1;
+        int idx = 0;
         boolean used = false;
-        while (idx < n - 1 && sum <= b){
-            idx++;
+        while (idx < n && sum <= b){
             if (sum + lst[idx] > b && !used){
                 used = true;
                 sum += lst[idx] / 2 ;
             }else
                 sum += lst[idx];
+            idx++;
         }
 
-        System.out.print(idx);
+        if (sum <= b)
+            System.out.print(idx);
+        else
+            System.out.print(idx - 1);
     }
 }

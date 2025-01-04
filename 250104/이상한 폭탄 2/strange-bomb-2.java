@@ -13,7 +13,7 @@ public class Main {
             lst[i] = sc.nextInt();
         
         int max = -1;
-        for (int i = 0; i < n - k; i++){
+        for (int i = 0; i < n; i++){
             for (int j = i + 1; j <= i + k && j < n; j++){
                 if (lst[i] == lst[j])
                     max = Math.max(lst[i], max);

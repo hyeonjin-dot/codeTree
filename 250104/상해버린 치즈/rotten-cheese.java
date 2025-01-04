@@ -32,7 +32,7 @@ public class Main {
                 continue;
 
             for (int j = 0; j < m; j++){
-                if (taken[i][j] < ill[i])
+                if (taken[i][j] > 0 && taken[i][j] < ill[i])
                     spoil[j] = true;
             }
 

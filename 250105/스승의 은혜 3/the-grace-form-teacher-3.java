@@ -37,10 +37,10 @@ public class Main {
             idx++;
         }
 
-
-        if (sum <= money)
+        // System.out.println(sum);
+        // if (sum <= money)
+        //     System.out.print(idx);
+        // else
             System.out.print(idx);
-        else
-            System.out.print(idx - 1);
     }
 }

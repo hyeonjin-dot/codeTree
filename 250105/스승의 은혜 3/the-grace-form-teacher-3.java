@@ -28,13 +28,13 @@ public class Main {
         while (idx < n){
             sum += lst[idx][1];
 
-            if (!used 
+            if (!used && sum + lst[idx][0] > money 
                     && sum + (lst[idx][0] / 2) <= money){
                 sum += lst[idx][0] / 2;
                 used = true;
             }else if (sum + lst[idx][0] <= money)
                 sum += lst[idx][0];
-            else
+            else if (used && sum + lst[idx][0] > money)
                 break;
             idx++;
         }

@@ -38,9 +38,9 @@ public class Main {
         }
 
         // System.out.println(sum);
-        // if (sum <= money)
-        //     System.out.print(idx);
-        // else
+        if (sum <= money)
+            System.out.print(idx + 1);
+        else
             System.out.print(idx);
     }
 }

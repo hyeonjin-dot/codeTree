@@ -34,7 +34,7 @@ public class Main {
                 used = true;
             }else if (sum + lst[idx][0] <= money)
                 sum += lst[idx][0];
-            else if (used && sum + lst[idx][0] > money)
+            else
                 break;
             idx++;
         }

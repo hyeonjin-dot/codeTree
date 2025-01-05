@@ -28,7 +28,7 @@ public class Main {
         while (idx < n){
             sum += lst[idx][1];
 
-            if (!used && sum + lst[idx][0] > money 
+            if (!used 
                     && sum + (lst[idx][0] / 2) <= money){
                 sum += lst[idx][0] / 2;
                 used = true;

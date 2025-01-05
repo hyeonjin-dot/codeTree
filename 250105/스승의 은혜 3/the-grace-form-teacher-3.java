@@ -25,22 +25,24 @@ public class Main {
         boolean used = false;
         int sum = 0;
         int idx = 0;
-        while (sum <= money && idx < n){
+        while (idx < n){
             sum += lst[idx][1];
 
             if (!used && sum + lst[idx][0] > money 
                     && sum + (lst[idx][0] / 2) <= money){
                 sum += lst[idx][0] / 2;
                 used = true;
-            }else
+            }else if (sum + lst[idx][0] <= money)
                 sum += lst[idx][0];
+            else
+                break;
             idx++;
         }
 
         // System.out.println(sum);
-        if (sum <= money)
-            System.out.print(idx + 1);
-        else
+        // if (sum <= money)
             System.out.print(idx);
+        // else
+            // System.out.print(idx - 1);
     }
 }

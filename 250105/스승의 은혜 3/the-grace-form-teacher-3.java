@@ -9,44 +9,44 @@ public class Main {
 
         int[][] lst = new int[n][3];
 
-        for (int i = 0; i < n; i++){
-            lst[i][0] = sc.nextInt();
-            lst[i][1] = sc.nextInt();
-            lst[i][2] = lst[i][0] + lst[i][1];
+        for (int i = 0; i < n; i++) {
+            lst[i][0] = sc.nextInt(); // 가격
+            lst[i][1] = sc.nextInt(); // 추가 비용
+            lst[i][2] = lst[i][0] + lst[i][1]; // 총 비용
         }
+
         Arrays.sort(lst, (a, b) -> {
             if (a[2] != b[2]) {
-                return Integer.compare(a[2], b[2]); // a[2] 기준
+                return Integer.compare(a[2], b[2]); // 총 비용 기준 오름차순
             } else {
-                return Integer.compare(b[0], a[0]);
+                return Integer.compare(b[0], a[0]); // 가격 기준 내림차순
             }
         });
 
-        boolean used = false;
-        int sum = 0;
-        int idx = 0;
-        while (idx < n){
+        boolean usedDiscount = false; // 할인 사용 여부
+        int sum = 0; // 현재 총 비용
+        int count = 0; // 구매 가능한 아이템 개수
 
-            if (!used && sum + lst[idx][0] + lst[idx][1] > money 
-                    && sum + (lst[idx][0] / 2) + lst[idx][1] <= money){
-                sum += lst[idx][0] / 2;
-                sum += lst[idx][1];
-                used = true;
-                idx++;
-            }else if (sum + lst[idx][0] + lst[idx][1]  <= money){
-                sum += lst[idx][0];
-                sum += lst[idx][1];
-                idx++;
-            }
-            else
+        for (int i = 0; i < n; i++) {
+            int price = lst[i][0];
+            int additionalCost = lst[i][1];
+            int totalCost = price + additionalCost;
+
+            if (!usedDiscount && sum + (price / 2) + additionalCost <= money) {
+                // 할인 적용 가능한 경우
+                sum += (price / 2) + additionalCost;
+                usedDiscount = true;
+                count++;
+            } else if (sum + totalCost <= money) {
+                // 할인 없이 구매 가능한 경우
+                sum += totalCost;
+                count++;
+            } else {
+                // 더 이상 구매 불가
                 break;
-            
+            }
         }
 
-        // System.out.println(sum);
-        if (sum <= money)
-            System.out.print(idx);
-        else
-            System.out.print(idx - 1);
+        System.out.println(count);
     }
 }

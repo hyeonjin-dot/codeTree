@@ -29,13 +29,14 @@ public class Main {
             sum += lst[idx][1];
 
             if (!used && sum + lst[idx][0] > money 
-                    && sum + (lst[idx][0] / 2) < money){
+                    && sum + (lst[idx][0] / 2) <= money){
                 sum += lst[idx][0] / 2;
                 used = true;
             }else
                 sum += lst[idx][0];
             idx++;
         }
+
 
         if (sum <= money)
             System.out.print(idx);

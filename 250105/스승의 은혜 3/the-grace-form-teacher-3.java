@@ -45,7 +45,7 @@ public class Main {
 
         // System.out.println(sum);
         if (sum <= money)
-            System.out.print(idx + 1);
+            System.out.print(idx);
         else
             System.out.print(idx - 1);
     }

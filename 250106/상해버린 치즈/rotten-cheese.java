@@ -11,7 +11,7 @@ public class Main {
 
         int [][] taken = new int[n][m]; // n번 사람이 m번 치즈를 몇초에 먹었는지
         int [] ill = new int[n]; // n번째 사람이 언제 아프기 시작했는지 
-        boolean [] medicine = new boolean[n]; // 약먹어야하면 추가
+        
         boolean [] spoil = new boolean[m]; // 치즈가 상했나요
 
         for (int i = 0; i < d; i++){
@@ -40,20 +40,28 @@ public class Main {
 
         // 한개만 상함
         int max = -1;
+        
         for (int j = 0; j < m; j++){
             if (!spoil[j])
                 continue;
+
+            boolean [] medicine = new boolean[n]; // 약먹어야하면 추가
+            boolean check = true;
             
             for (int i = 0; i < n; i++){
+                if (ill[i] > 0){
+                    if (taken[i][j] == 0 || ill[i] <= taken[i][j])
+                        check = false;
+                }
                 if (taken[i][j] > 0)
                     medicine[i] = true;
-                if (ill[i] > 0 && ill[i] <= taken[i][j])
-                    medicine[i] = false;
             }
             int res = 0;
-            for (boolean medi : medicine){
-                if (medi)
-                    res++;
+            if (check){
+                for (boolean medi : medicine){
+                    if (medi)
+                        res++;
+                }
             }
             max = Math.max(res, max);
         }

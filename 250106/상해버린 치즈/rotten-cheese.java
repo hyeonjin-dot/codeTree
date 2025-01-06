@@ -39,35 +39,23 @@ public class Main {
         }
 
         // 한개만 상함
+        int max = -1;
         for (int j = 0; j < m; j++){
             if (!spoil[j])
                 continue;
             
-            boolean bad = true;
-
             for (int i = 0; i < n; i++){
-                if (ill[i] == 0)
-                    continue;
-                if (spoil[j] && taken[i][j] < ill[i])
-                    continue;
-                else
-                    bad = false;
+                if (taken[i][j] > 0)
+                    medicine[i] = true;
             }
-
-            if (bad){
-                for (int i = 0; i < n; i++){
-                    if (taken[i][j] > 0)
-                        medicine[i] = true;
-                }
+            int res = 0;
+            for (boolean medi : medicine){
+                if (medi)
+                    res++;
             }
+            max = Math.max(res, max);
         }
 
-        int res = 0;
-        for (boolean medi : medicine){
-            if (medi)
-                res++;
-        }
-
-        System.out.print(res);
+        System.out.print(max);
     }
 }

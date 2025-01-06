@@ -18,7 +18,10 @@ public class Main {
             int person = sc.nextInt() - 1;
             int cheese = sc.nextInt() - 1;
             int when = sc.nextInt();
-            taken[person][cheese] = when;
+            if (taken[person][cheese] > 0)
+                taken[person][cheese] = Math.min(taken[person][cheese], when);
+            else
+                taken[person][cheese] = when;
         }
 
         for (int i = 0; i < s; i++){

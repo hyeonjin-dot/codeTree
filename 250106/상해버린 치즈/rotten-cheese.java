@@ -47,6 +47,8 @@ public class Main {
             for (int i = 0; i < n; i++){
                 if (taken[i][j] > 0)
                     medicine[i] = true;
+                if (ill[i] > 0 && ill[i] <= taken[i][j])
+                    medicine[i] = false;
             }
             int res = 0;
             for (boolean medi : medicine){

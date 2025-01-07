@@ -10,15 +10,16 @@ public class Main {
         sc.nextLine();
 
         int[] lst = new int[1001];
-
+        int placeMax = 0;
         for (int i = 0; i < t; i++){
             String tmp = sc.nextLine().trim();
             if (tmp.charAt(0) == 'S')
                 lst[Integer.parseInt(tmp.substring(2))] = 1;
             else
                 lst[Integer.parseInt(tmp.substring(2))] = 2;
+            placeMax = Math.max(placeMax, Integer.parseInt(tmp.substring(2)));
         }
-        
+
         int res = 0;
 
         for (int i = a; i <= b; i++){
@@ -30,7 +31,7 @@ public class Main {
                     break;
                 }
             }
-            for (int j = i; j <= b; j++){
+            for (int j = i; j <= placeMax; j++){
                 if (lst[j] == 1){
                     up = (j - i);
                     break;
@@ -45,7 +46,7 @@ public class Main {
                     break;
                 }
             }
-            for (int j = i; j <= b; j++){
+            for (int j = i; j <= placeMax; j++){
                 if (lst[j] == 2){
                     up = (j - i);
                     break;

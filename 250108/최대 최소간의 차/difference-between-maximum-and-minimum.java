@@ -13,23 +13,19 @@ public class Main {
             lst[i] = sc.nextInt();
 
         Arrays.sort(lst);
+        int min = lst[0];
+        int max = lst[n - 1];
 
-        int res = 0;
-        int diff = (lst[n - 1] - lst[0]) - k;
-        while (diff > 0){
-            if (diff % 2 == 0){
-                lst[0] += diff / 2;
-                lst[n - 1] -= diff / 2;
-                res += diff;
+        int res = Integer.MAX_VALUE;
+
+        for (int i = min; i <= max; i++){
+            int tmp = 0;
+            for (int j = 0; j < n; j++){
+                tmp += Math.min(Math.abs(lst[j] - i), Math.abs(lst[j] - i - k));
             }
-            else{
-                lst[0] += diff / 2 + 1;
-                lst[n - 1] -= diff / 2;
-                res += diff;
-            }
-            Arrays.sort(lst);
-            diff = (lst[n - 1] - lst[0]) - k;
+            res = Math.min(tmp, res);
         }
+        
         System.out.print(res);
 
     }

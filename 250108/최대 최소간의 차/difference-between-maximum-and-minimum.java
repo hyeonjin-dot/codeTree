@@ -21,6 +21,8 @@ public class Main {
         for (int i = min; i <= max; i++){
             int tmp = 0;
             for (int j = 0; j < n; j++){
+                if (lst[j] >= i && lst[j] <= i + k)
+                    continue;
                 tmp += Math.min(Math.abs(lst[j] - i), Math.abs(lst[j] - i - k));
             }
             res = Math.min(tmp, res);

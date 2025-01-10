@@ -22,7 +22,7 @@ public class Main {
             if (Integer.parseInt(lst[i].substring(2)) == p_person)
                 read[(int)(lst[i].charAt(0) - 'A')]++;
         }
-        for (int i = p - 1; i < n; i++)
+        for (int i = p - 1; i < m; i++)
             read[(int)(lst[i].charAt(0) - 'A')]++;
 
 

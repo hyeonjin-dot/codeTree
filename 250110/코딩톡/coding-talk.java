@@ -19,7 +19,7 @@ public class Main {
         }
 
         if (lst[p] == 0){
-            System.out.print();
+            System.out.print("");
             return ;
         }
 

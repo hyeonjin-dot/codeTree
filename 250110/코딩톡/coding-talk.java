@@ -9,34 +9,30 @@ public class Main {
         int p = sc.nextInt();
         sc.nextLine();
 
-        int[] lst = new int[26];
-        char[] how = new char[100];
+        String[] lst = new String[m];
 
-        for (int i = 0; i < m; i++){
-            String tmp = sc.nextLine().trim();
-            lst[(int)(tmp.charAt(0) - 'A')] = Integer.parseInt(tmp.substring(2));
-            how[i] = tmp.charAt(0);
-        }
-
-        if (lst[(int)(how[p - 1] - 'A')] == 0){
-            System.out.print("");
-            return ;
-        }
-
-        int[] read = new int[n];
-        for (int i = 0 ; i < p - 1; i++){
-            if (lst[(int)(how[i] - 'A')] == lst[(int)(how[p - 1] - 'A')]){
-                read[(int)(how[i] - 'A')]++;
-            }
-        }
-        for (int i = p - 1; i < m; i++)
-            read[(int)(how[i] - 'A')]++;
+        for (int i = 0; i < m; i++)
+            lst[i] = sc.nextLine().trim();
         
+        int[] read = new int[26];
+
+        int p_person = Integer.parseInt(lst[p - 1].substring(2));
+
+        for (int i = 0; i < p - 1; i++){
+            if (Integer.parseInt(lst[i].substring(2)) == p_person)
+                read[(int)(lst[i].charAt(0) - 'A')]++;
+        }
+        for (int i = p - 1; i < n; i++)
+            read[(int)(lst[i].charAt(0) - 'A')]++;
+
+
         for (int i = 0; i < n; i++){
-            if (read[i] == 0){
-                char tmp = (char)('A' + i);
-                System.out.print(tmp + " ");
+            if (p_person == 0){
+                System.out.print("");
+                break;
             }
+            if (read[i] == 0)
+                System.out.print((char)('A' + i) + " ");
         }
     }
 }

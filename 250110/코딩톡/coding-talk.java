@@ -32,7 +32,7 @@ public class Main {
         for (int i = p - 1; i < m; i++)
             read[(int)(how[i] - 'A')]++;
         
-        for (int i = 0; i < m; i++){
+        for (int i = 0; i < n; i++){
             if (read[i] == 0){
                 char tmp = (char)('A' + i);
                 System.out.print(tmp + " ");

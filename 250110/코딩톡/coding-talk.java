@@ -25,7 +25,7 @@ public class Main {
 
         int[] read = new int[n];
         for (int i = 0 ; i < p - 1; i++){
-            if ((int)(how[i] - 'A') == (int)(how[p - 1] - 'A')){
+            if (lst[(int)(how[i] - 'A')] == lst[(int)(how[p - 1] - 'A')]){
                 read[(int)(how[i] - 'A')]++;
             }
         }

@@ -18,7 +18,7 @@ public class Main {
             how[i] = tmp.charAt(0);
         }
 
-        if (lst[p] == 0){
+        if (lst[(int)(how[p - 1] - 'A')] == 0){
             System.out.print("");
             return ;
         }

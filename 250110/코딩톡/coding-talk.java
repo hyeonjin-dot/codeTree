@@ -18,6 +18,11 @@ public class Main {
             how[i] = tmp.charAt(0);
         }
 
+        if (lst[p] == 0){
+            System.out.print();
+            return ;
+        }
+
         int[] read = new int[n];
         for (int i = 0 ; i < p - 1; i++){
             if ((int)(how[i] - 'A') == (int)(how[p - 1] - 'A')){

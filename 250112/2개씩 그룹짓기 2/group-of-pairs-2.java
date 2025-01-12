@@ -15,7 +15,7 @@ public class Main {
         long min = Long.MAX_VALUE;
 
         for (int i = 0; i < n / 2; i++){
-            long diff = lst.get(n / 2 - i) - lst.get(i);
+            long diff = lst.get(n / 2 + i) - lst.get(i);
             min = Math.min(min, diff);
         }
 

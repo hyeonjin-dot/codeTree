@@ -5,20 +5,22 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         int n = sc.nextInt();
-        List<Long> lst = new ArrayList<>();
+        long[] lst = new long[n];
 
-        for (int i = 0; i < n; i++)
-            lst.add(sc.nextLong());
-
-        Collections.sort(lst);
-
-        long min = Long.MAX_VALUE;
-
-        for (int i = 0; i < n / 2; i++){
-            long diff = lst.get(n / 2 + i) - lst.get(i);
-            min = Math.min(min, diff);
+        for (int i = 0; i < n; i++) {
+            lst[i] = sc.nextLong();
         }
 
-        System.out.print(min);
+        Arrays.sort(lst); // 정렬
+
+        long minMax = Long.MIN_VALUE; // 최솟값 중 최댓값 저장
+
+        // i번째 작은 값과 n/2 + i번째 큰 값을 비교
+        for (int i = 0; i < n / 2; i++) {
+            long diff = lst[n / 2 + i] - lst[i];
+            minMax = Math.max(minMax, diff); // 최솟값 중 최대를 갱신
+        }
+
+        System.out.print(minMax);
     }
 }

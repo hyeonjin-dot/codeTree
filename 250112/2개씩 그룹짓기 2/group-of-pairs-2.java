@@ -5,7 +5,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         int n = sc.nextInt();
-        List<Integer> lst = new ArrayList<>();
+        List<Long> lst = new ArrayList<>();
 
         for (int i = 0; i < n; i++)
             lst.add(sc.nextInt());

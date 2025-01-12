@@ -5,19 +5,17 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         int n = sc.nextInt();
-        long[] lst = new long[n];
+        long[] lst = new long[2 * n];
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < 2 * n; i++)
             lst[i] = sc.nextLong();
-        }
 
         Arrays.sort(lst); // 정렬
 
         long minMax = Long.MAX_VALUE; // 최솟값 중 최댓값 저장
 
-        // i번째 작은 값과 n/2 + i번째 큰 값을 비교
-        for (int i = 0; i < n / 2; i++) {
-            long diff = lst[n / 2 + i] - lst[i];
+        for (int i = 0; i < n; i++) {
+            long diff = lst[n + i] - lst[i];
             minMax = Math.min(minMax, diff); // 최솟값 중 최대를 갱신
         }
 

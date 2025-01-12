@@ -8,7 +8,7 @@ public class Main {
         List<Long> lst = new ArrayList<>();
 
         for (int i = 0; i < n; i++)
-            lst.add(sc.nextInt());
+            lst.add(sc.nextLong());
 
         Collections.sort(lst);
 

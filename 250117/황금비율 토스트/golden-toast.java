@@ -1,41 +1,45 @@
-import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        // BufferedReader와 StringBuilder 사용
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        
-        int n = Integer.parseInt(st.nextToken()); // 초기 문자열 길이
-        int m = Integer.parseInt(st.nextToken()); // 명령어 개수
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-        StringBuilder sb = new StringBuilder(br.readLine()); // 초기 문자열
-        int cursor = n; // 초기 커서는 문자열 끝
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        // sc.nextLine();
+
+        LinkedList<Character> lst = new LinkedList<>();
+        for (char c : sc.next()) {
+            lst.add(c);
+        }
+
+        ListIterator<Character> it = lst.listIterator(lst.size());
 
         for (int i = 0; i < m; i++) {
-            String command = br.readLine();
+            String command = sc.nextLine().trim();
             char action = command.charAt(0);
-
             switch (action) {
-                case 'L': // 커서를 왼쪽으로 이동
-                    if (cursor > 0) cursor--;
+                case 'L':
+                    if (it.hasPrevious()) it.previous();
                     break;
-                case 'R': // 커서를 오른쪽으로 이동
-                    if (cursor < sb.length()) cursor++;
+                case 'R':
+                    if (it.hasNext()) it.next();
                     break;
-                case 'D': // 현재 커서 위치의 문자 삭제
-                    if (cursor < sb.length()) sb.deleteCharAt(cursor);
+                case 'D':
+                    if (it.hasNext()) {
+                        it.next();
+                        it.remove();
+                    }
                     break;
-                case 'P': // 현재 커서 위치에 문자 삽입
-                    char c = command.split(" ")[1].charAt(0);
-                    sb.insert(cursor, c);
-                    cursor++;
+                case 'P':
+                    String s = command.split(" ")[1];
+                    it.add(s.charAt(0));
                     break;
             }
         }
 
-        // 최종 결과 출력
-        System.out.print(sb);
+        it = lst.listIterator();
+        while (it.hasNext())
+            System.out.print(it.next());
     }
 }

@@ -33,8 +33,7 @@ public class Main {
                     }
                     break;
                 case 'P':
-                    String s = command.split(" ")[1];
-                    it.add(s.charAt(0));
+                    it.add(sc.next().charAt(0));
                     break;
             }
         }

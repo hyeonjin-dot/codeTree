@@ -8,7 +8,7 @@ public class Main {
         int m = sc.nextInt();
         sc.nextLine();
 
-        LinkedList<Character> lst = new LinkedList<>();
+        List<Character> lst = new ArrayList<>();
         String input = sc.nextLine().trim();
         input.chars().mapToObj(c -> (char) c).forEach(lst::add);
         

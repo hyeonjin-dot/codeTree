@@ -31,7 +31,7 @@ public class Main {
                         it.remove();
                     }
                     break;
-                case 'I':
+                case 'P':
                     it.add(command.charAt(2));
                     break;
             }

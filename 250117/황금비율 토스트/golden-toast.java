@@ -32,15 +32,14 @@ public class Main {
                     }
                     break;
                 case 'P':
-                    it.add(command.charAt(2));
+                    String s = command.split(" ")[1];
+                    it.add(s.charAt(0));
                     break;
             }
         }
 
-        StringBuilder result = new StringBuilder();
-        for (char c : lst) {
-            result.append(c);
-        }
-        System.out.print(result);
+        it = lst.listIterator();
+        while (it.hasNext())
+            System.out.print(it.next());
     }
 }

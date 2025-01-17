@@ -9,9 +9,8 @@ public class Main {
         sc.nextLine();
 
         LinkedList<Character> lst = new LinkedList<>();
-        String tmp = sc.nextLine().trim();
-        for (int i = 0; i < n; i++)
-            lst.add(tmp.charAt(i));
+        String input = sc.nextLine().trim();
+        input.chars().mapToObj(c -> (char) c).forEach(lst::add);
         
         ListIterator<Character> it = lst.listIterator(n);
 

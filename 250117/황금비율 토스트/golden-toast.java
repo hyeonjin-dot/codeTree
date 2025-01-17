@@ -8,9 +8,10 @@ public class Main {
         int m = sc.nextInt();
         // sc.nextLine();
 
+        String tmp = sc.next();
         LinkedList<Character> lst = new LinkedList<>();
-        for (char c : sc.next()) {
-            lst.add(c);
+        for (int i = 0; i < tmp.length(); i++) {
+            lst.add(tmp.charAt(i));
         }
 
         ListIterator<Character> it = lst.listIterator(lst.size());

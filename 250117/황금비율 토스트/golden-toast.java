@@ -17,7 +17,7 @@ public class Main {
         ListIterator<Character> it = lst.listIterator(lst.size());
 
         for (int i = 0; i < m; i++) {
-            String command = sc.nextLine().trim();
+            String command = sc.next();
             char action = command.charAt(0);
             switch (action) {
                 case 'L':

@@ -24,8 +24,7 @@ public class Main {
             else if (cmm.charAt(0) == 'D'&& it.hasNext()){
                 it.next();
                 it.remove();
-            }
-            else if (cmm.charAt(0) == 'P')
+            } else if (cmm.length() == 3)
                 it.add(cmm.charAt(2));
         }
 

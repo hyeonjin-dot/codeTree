@@ -8,26 +8,39 @@ public class Main {
         int m = sc.nextInt();
         sc.nextLine();
 
-        List<Character> lst = new ArrayList<>();
-        String input = sc.nextLine().trim();
-        input.chars().mapToObj(c -> (char) c).forEach(lst::add);
-        
-        ListIterator<Character> it = lst.listIterator(n);
-
-        for (int i = 0; i < m; i++){
-            String cmm = sc.nextLine().trim();
-            if (cmm.charAt(0) == 'L' && it.hasPrevious())
-                it.previous();
-            else if (cmm.charAt(0) == 'R'&& it.hasNext())
-                it.next();
-            else if (cmm.charAt(0) == 'D'&& it.hasNext()){
-                it.next();
-                it.remove();
-            } else if (cmm.length() == 3)
-                it.add(cmm.charAt(2));
+        LinkedList<Character> lst = new LinkedList<>();
+        for (char c : sc.nextLine().trim().toCharArray()) {
+            lst.add(c);
         }
 
-        for (char c : lst)
-            System.out.print(c);
+        ListIterator<Character> it = lst.listIterator(n);
+
+        for (int i = 0; i < m; i++) {
+            String command = sc.nextLine().trim();
+            char action = command.charAt(0);
+            switch (action) {
+                case 'L':
+                    if (it.hasPrevious()) it.previous();
+                    break;
+                case 'R':
+                    if (it.hasNext()) it.next();
+                    break;
+                case 'D':
+                    if (it.hasNext()) {
+                        it.next();
+                        it.remove();
+                    }
+                    break;
+                case 'I':
+                    it.add(command.charAt(2));
+                    break;
+            }
+        }
+
+        StringBuilder result = new StringBuilder();
+        for (char c : lst) {
+            result.append(c);
+        }
+        System.out.print(result);
     }
 }

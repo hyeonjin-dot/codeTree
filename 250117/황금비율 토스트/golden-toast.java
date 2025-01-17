@@ -25,7 +25,7 @@ public class Main {
                 it.next();
                 it.remove();
             }
-            else 
+            else if (cmm.charAt(0) == 'P')
                 it.add(cmm.charAt(2));
         }
 

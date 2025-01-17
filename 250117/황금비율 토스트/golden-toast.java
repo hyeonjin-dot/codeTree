@@ -8,7 +8,7 @@ public class Main {
         int m = sc.nextInt();
         sc.nextLine();
 
-        List<Character> lst = new ArrayList<>();
+        LinkedList<Character> lst = new LinkedList<>();
         String tmp = sc.nextLine().trim();
         for (int i = 0; i < n; i++)
             lst.add(tmp.charAt(i));
@@ -28,10 +28,7 @@ public class Main {
                 it.add(cmm.charAt(2));
         }
 
-        it = lst.listIterator();
-        while (it.hasNext())
-            System.out.print(it.next());
-
-
+        for (char c : lst)
+            System.out.print(c);
     }
 }

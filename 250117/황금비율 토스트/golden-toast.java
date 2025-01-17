@@ -13,7 +13,7 @@ public class Main {
             lst.add(c);
         }
 
-        ListIterator<Character> it = lst.listIterator(n);
+        ListIterator<Character> it = lst.listIterator(lst.size());
 
         for (int i = 0; i < m; i++) {
             String command = sc.nextLine().trim();

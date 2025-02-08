@@ -9,6 +9,8 @@ public class Main {
         for (int i = 0; i < 3; i++)
             lst[i] = sc.nextInt();
 
+        Arrays.sort(lst);
+
         int cnt = 0;
 
         while (true){

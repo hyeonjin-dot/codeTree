@@ -21,9 +21,15 @@ public class Main {
                 before = i;
             }
         }
-        min = Math.min(min, max - 2);
+
+        min = Math.min(max / 2, min);
         System.out.print(min);
         
         
     }
 }
+
+/*
+10010001
+
+*/

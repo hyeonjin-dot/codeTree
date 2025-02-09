@@ -21,8 +21,8 @@ public class Main {
                 before = i;
             }
         }
-
-        System.out.print(max - 1);
+        min = Math.min(min, max - 2);
+        System.out.print(min);
         
         
     }

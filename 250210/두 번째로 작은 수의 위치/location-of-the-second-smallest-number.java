@@ -32,7 +32,7 @@ public class Main {
             }
         }
 
-        if (ret != 0 && cnt == 1)
+        if (cnt == 1)
             System.out.print(ret + 1);
         else
             System.out.print(-1);

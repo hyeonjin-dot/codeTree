@@ -26,6 +26,9 @@ public class Main {
             }
             
         }
+        
+        if (cnt == 0)
+            cnt++;
 
         System.out.print(cnt);
 

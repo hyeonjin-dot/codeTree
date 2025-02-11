@@ -27,7 +27,7 @@ public class Main {
             
         }
 
-        if (cnt == 0 && distance > 0)
+        if (distance > 0)
             cnt++;
 
         System.out.print(cnt);

@@ -38,7 +38,13 @@ public class Main {
                 }
 
             }else{
-                odd.remove(0);
+                if (odd.size() > 0)
+                    odd.remove(0);
+                else {
+                    while (even.size() > 0)
+                        even.remove(0);
+                    res--;
+                }
             }
 
             cnt++;

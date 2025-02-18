@@ -23,9 +23,9 @@ public class Main {
         int y = ymax - ymin;
 
         if (x > y)
-            System.our.print(x * x);
+            System.out.print(x * x);
         else
-            System.our.print(y * y);
+            System.out.print(y * y);
       
     }
 }

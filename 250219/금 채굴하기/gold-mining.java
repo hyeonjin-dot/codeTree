@@ -49,7 +49,7 @@ public class Main {
 
         for (int i = 0; i < n; i++) {         // 중심점 i
             for (int j = 0; j < n; j++) {     // 중심점 j
-                for (int K = 0; K <= k_max; K++) { // 마름모 크기
+                for (int K = 0; K <= k_max + 1; K++) { // 마름모 크기
                     int goldCount = find(i, j, K);
                     int cost = K*K + (K+1)*(K+1);
 

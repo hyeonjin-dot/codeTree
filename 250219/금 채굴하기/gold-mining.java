@@ -26,7 +26,7 @@ public class Main {
         int gold = cnt * m;
 
         if (gold - dig < 0)
-            return Integer.MIN_VALUE;
+            return 0;
         return gold - dig;
     }
 
@@ -43,7 +43,7 @@ public class Main {
                 lst[i][j] = sc.nextInt();
         }
 
-        int max_charge = Integer.MIN_VALUE;
+        int max_charge = 0;
         //채굴 금액 : k^2 + (k+1)^2
         int k_max = (n + 1) / 2;
 

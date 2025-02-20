@@ -4,89 +4,83 @@ public class Main {
     public static int[][] lst;
     public static int n;
 
-    public static int find_sum_1(int i, int j){
+    public static int find_sum(int i, int j){
         int ret = 0;
-        int x = i;
-        int y = j;
 
-        if (x < 2 || y < 1)
-            return ret;
-        
-        // ret += lst[x][y]; // 현재
+        for (int odd = 1; odd <= n; odd++){
+            for (int even = 1; even <= n; even++){
+                int sum = 0;
+                boolean valid = true;
 
-        // System.out.println(x + " " + y);
+                int x = i;
+                int y = j;
 
-        while (x >= 1 && y < n){
-            // System.out.print(x + " " + y + " ");
-            ret += lst[x--][y++];
+                // 1
+                for (int k = 0; k < odd; k++){
+                    x--;
+                    y++;
+                    if (x < 0 || y >= n){
+                        valid = false;
+                        break;
+                    }
+                    sum += lst[x][y];
+                }
+
+                if (!valid)
+                    continue;
+
+                // 2
+                for (int k = 0; k < even; k++){
+                    x--;
+                    y--;
+                    if (x < 0 || y < 0){
+                        valid = false;
+                        break;
+                    }
+                    sum += lst[x][y];
+                }
+                if (!valid)
+                    continue;
+
+                // 3
+                for (int k = 0; k < odd; k++){
+                    x++;
+                    y--;
+                    if (x >= n || y < 0){
+                        valid = false;
+                        break;
+                    }
+                    sum += lst[x][y];
+                }
+                if (!valid)
+                    continue;
+
+                // 4
+                for (int k = 0; k < even; k++){
+                    x++;
+                    y++;
+                    if (x >= n || y >= n){
+                        valid = false;
+                        break;
+                    }
+                    sum += lst[x][y];
+                }
+                if (!valid)
+                    continue;     
+
+                ret = Math.max(sum, ret);           
+            }
         }
 
-        if (y >= n && x != 0){
-            // System.out.println();
-            // System.out.println("result : " + ret);
-            return 0;
-        }
-
-        y -= 2;
-
-        // System.out.print(" / ");
-
-        while (x < i && y != j - 1){
-            // System.out.print( " " + x + " " + y);
-            ret += lst[x++][y--];
-        }
-
-        ret += lst[x][y];
-
-        // System.out.println();
-        // System.out.println("result : " + ret);
         return ret;
     }
-
-    public static int find_sum_2(int i, int j){
-        int ret = 0;
-        int x = i;
-        int y = j;
-
-        if (x < 2 || y < 1)
-            return ret;
-
-        ret += lst[x][y];
-
-        x--;
-        y++;
-
-        if (y >= n || x <= 0)
-            return 0;
-
-        while (x >= 0 && y >= 1){
-            // System.out.print(" " + x + " " + y + " ");
-            ret += lst[x--][y--];
-        }
-
-        if (x != -1 && y < 0){
-            // System.out.print(x + " " + y);
-            return 0;
-        }
-
-        x += 2;
-        // System.out.print(" / ");
-
-        while (x <= i - 1 && y <= j - 1){
-            // System.out.print(" " + x + " " + y + " ");
-            ret += lst[x++][y++];
-        }
-
-        // System.out.println("\n ret : " + ret);
-        return ret;
-    }
-
 
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         n = sc.nextInt();
+        sc.nextLine();
 
         lst = new int[n][n];
 
@@ -99,8 +93,7 @@ public class Main {
 
         for (int i = 0; i < n; i++){
             for (int j = 0; j < n; j++){
-                int sum = Math.max(find_sum_1(i,j), find_sum_2(i, j));
-                // System.out.println(i + " " + j + " " + sum);
+                int sum = find_sum(i, j);
                 max = Math.max(max, sum);
             }
         }

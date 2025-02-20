@@ -59,17 +59,25 @@ public class Main {
         if (y >= n || x <= 0)
             return 0;
 
-        while (x > 0 && y > 1)
+        while (x >= 0 && y >= 1){
+            // System.out.print(" " + x + " " + y + " ");
             ret += lst[x--][y--];
+        }
 
-        // if (x != 1 || y >= 1)
-        //     return 0;
+        if (x != -1 && y < 0){
+            // System.out.print(x + " " + y);
+            return 0;
+        }
 
-        while (x <= i - 1 && y >= j + 1)
+        x += 2;
+        // System.out.print(" / ");
+
+        while (x <= i - 1 && y <= j - 1){
+            // System.out.print(" " + x + " " + y + " ");
             ret += lst[x++][y++];
+        }
 
-        ret += lst[x][y];
-
+        // System.out.println("\n ret : " + ret);
         return ret;
     }
 

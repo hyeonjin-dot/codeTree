@@ -10,7 +10,7 @@ public class Main {
 
         for (int i = r1; i <= r2; i++){
             for (int j = c1; j <= c2; j++){
-                if (lst[i][j] < 0)
+                if (lst[i][j] <= 0)
                     return -1;
                 ret++;
             }

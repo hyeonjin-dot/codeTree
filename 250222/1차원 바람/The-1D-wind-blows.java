@@ -53,7 +53,7 @@ public class Main {
 
         int moveDown = moveLine + 1;
         direction = !left;
-        
+
         while (true) { // 아래로
             if (moveDown >= n)
                 break ;
@@ -90,14 +90,16 @@ public class Main {
             }
         }
 
-        commend = new String[q];
-        sc.nextLine();
+        if (q > 0) {
+            commend = new String[q];
+            sc.nextLine();
 
-        for (int i = 0; i < q; i++)
-            commend[i] = sc.nextLine().trim();
+            for (int i = 0; i < q; i++)
+                commend[i] = sc.nextLine().trim();
 
-        for (int i = 0; i < q; i++)
-            move(commend[i]);
+            for (int i = 0; i < q; i++)
+                move(commend[i]);
+        }
 
         for (int i = 0; i < n; i++){
             for (int j = 0; j < m; j++)

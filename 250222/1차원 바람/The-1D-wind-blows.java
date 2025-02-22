@@ -21,10 +21,11 @@ public class Main {
     }
 
     public static void move(String str){
-        int moveLine = (int)(str.charAt(0) - '0') - 1;
+        String[] split = str.split(" ");
+        int moveLine = (int)(Integer.parseInt(split[0])) - 1;
         boolean left = true;
         
-        if (str.charAt(2) == 'R')
+        if (split[1].charAt(0) == 'R')
             left = false;
         
         listMove(moveLine, left);
@@ -37,6 +38,7 @@ public class Main {
                 break ;
             
             int sameCnt = 0;
+
             for (int i = 0; i < m; i++){
                 if (lst[moveUp + 1][i] == lst[moveUp][i])
                     sameCnt++;
@@ -59,6 +61,7 @@ public class Main {
                 break ;
             
             int sameCnt = 0;
+
             for (int i = 0; i < m; i++){
                 if (lst[moveDown - 1][i] == lst[moveDown][i])
                     sameCnt++;

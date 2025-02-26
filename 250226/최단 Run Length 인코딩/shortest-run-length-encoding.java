@@ -27,12 +27,13 @@ public class Main {
         for (int i = len - 1; i > 0; i--){
             if (A.charAt(i) == A.charAt(0))
                 cnt++;
+            else
+                break ;
         }
-
-        int diff = 0;
+        
         int res = 2;
         for (int i = 1; i < len - cnt; i++){
-            if (A.charAt(i) != A.charAt(i - 1) || i == len - cnt - 1){
+            if (A.charAt(i) != A.charAt(i - 1)){
                 res += 2;
             }
         }

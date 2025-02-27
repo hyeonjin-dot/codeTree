@@ -28,6 +28,7 @@ public class Main {
         int max_x = Integer.MIN_VALUE;
         int min_y = Integer.MAX_VALUE;
         int max_y = Integer.MIN_VALUE;
+
         for (int i = rect1_x1; i <= rect1_x2; i++){
             for (int j = rect1_y1; j <= rect1_y2; j++){
                 if (paper[i][j] == 1){
@@ -39,6 +40,11 @@ public class Main {
             }
         }
         
+        if (max_x == Integer.MIN_VALUE){
+            System.out.print("0");
+            return ;
+        }
+
         System.out.print((max_y-min_y) * (max_x - min_x));
     }
 }

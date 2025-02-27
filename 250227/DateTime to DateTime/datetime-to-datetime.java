@@ -31,6 +31,8 @@ public class Main {
         }
 
         while (B <= b){
+            if (B == b && C == c)
+                break ;
             res++;
             C++;
 
@@ -38,9 +40,6 @@ public class Main {
                 B++;
                 C = 0;
             }
-
-            if (B == b && C == c)
-                break ;
         }
 
         System.out.print(res);

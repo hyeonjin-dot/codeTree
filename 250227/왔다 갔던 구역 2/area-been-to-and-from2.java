@@ -9,13 +9,14 @@ public class Main {
         for (int i = 0; i < N; i++) {
             int x = sc.nextInt();
             char dir = sc.next().charAt(0);
+
             if (dir == 'R'){//++
                 for (int j = 0; j < x; j++)
                     space[idx + j]++;
                 idx += x;
             }else {
                 for (int j = 0; j < x; j++)
-                    space[idx - j]++;
+                    space[idx - j - 1]++;
                 idx -= x;
             }
         }

@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-    public static int[] dx = {1, -1, 0, 0};
+    public static int[] dx = {-1, 1, 0, 0};
     public static int[] dy = {0, 0, 1, -1};
     public static int N;
 
@@ -34,12 +34,10 @@ public class Main {
                     idx++;
                 else
                     idx--;
-                idx %= 4;
             }else {
                 R += dx[idx];
                 C += dy[idx];
             }
-
             T--;
         }
 

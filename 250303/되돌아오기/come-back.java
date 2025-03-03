@@ -25,7 +25,6 @@ public class Main {
             x += dx[idx];
             y += dy[idx];
             time++;
-            System.out.println(x + " " + y);
             
             if (x == 0 && y == 0)
                 return;

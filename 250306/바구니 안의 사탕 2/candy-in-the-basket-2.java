@@ -14,11 +14,18 @@ public class Main {
         
         int max = Integer.MIN_VALUE;
 
-        for (int i = k; i < 101 - k; i++){
+        if (2 * k >= 101){
             int sum = 0;
-            for (int j = i - k; j <= i + k; j++)
-                sum += candies[j];
+            for (int i = 0; i < 101; i++)
+                sum += candies[i];
             max = Math.max(max, sum);
+        } else{
+            for (int i = 0; i < 101 - 2 * k; i++){
+                int sum = 0;
+                for (int j = i; j <= i + 2 * k; j++)
+                    sum += candies[j];
+                max = Math.max(max, sum);
+            }
         }
 
         System.out.print(max);

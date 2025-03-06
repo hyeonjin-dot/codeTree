@@ -9,14 +9,14 @@ public class Main {
         for (int i = 0; i < n; i++) {
             int cnt = sc.nextInt();
             int position = sc.nextInt();
-            candies[position] = cnt;
+            candies[position] += cnt;
         }
         
         int max = Integer.MIN_VALUE;
 
-        for (int i = 0; i < 101 - 2 * k; i++){
+        for (int i = k; i < 101 - k; i++){
             int sum = 0;
-            for (int j = i; j <= i + 2 * k; j++)
+            for (int j = i - k; j <= i + k; j++)
                 sum += candies[j];
             max = Math.max(max, sum);
         }

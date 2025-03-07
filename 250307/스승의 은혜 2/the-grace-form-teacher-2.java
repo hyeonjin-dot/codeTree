@@ -24,6 +24,8 @@ public class Main {
                     break ;
                 }
             }
+            if (sum <= b)
+                max = n;
         }
 
         System.out.print(max);

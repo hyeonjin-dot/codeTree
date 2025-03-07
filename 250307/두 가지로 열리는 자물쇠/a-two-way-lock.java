@@ -5,7 +5,9 @@ public class Main {
     public static int[][] lst = new int[2][3];
 
     public static boolean isWithinRange(int value, int target) {
-        return Math.abs(value - target) <= 2 || Math.abs(value - (target + n)) <= 2;
+        return (Math.abs(value - target) <= 2 
+            || Math.abs(value + n - target) <= 2
+            || Math.abs(value - n - target) <= 2);
     }
 
     public static void main(String[] args) {
@@ -39,3 +41,15 @@ public class Main {
         System.out.print(cnt);
     }
 }
+
+
+/*
+
+10
+9 9 9
+3 3 3
+
+
+7 8 9 10 1
+1 2 3 4 5
+*/

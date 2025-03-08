@@ -17,7 +17,7 @@ public class Main {
         for (int i = 0; i < m; i++){
             if (marbles[i][0] == -1)
                 continue ;
-                
+
             int x = marbles[i][0];
             int y = marbles[i][1];
 
@@ -75,7 +75,7 @@ public class Main {
 
         int res = 0;
         for (int i = 0; i < m; i++){
-            if (marbles[i][0] > 0)
+            if (marbles[i][0] != -1)
                 res++;
         }
 

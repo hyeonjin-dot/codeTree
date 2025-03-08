@@ -40,10 +40,13 @@ public class Main {
             int x = marbles[i][0];
             int y = marbles[i][1];
 
-            int idx = 0;
+            int idx = -1;
             for (int j = 0; j < 4; j++){
                 if (!inRange(x + dx[j], y + dy[j]))
                     continue;
+                
+                if (idx == -1)
+                    idx = j;
                 
                 if (grid[x + dx[idx]][y + dy[idx]] 
                         < grid[x + dx[j]][y + dy[j]])

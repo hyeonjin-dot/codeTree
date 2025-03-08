@@ -3,6 +3,7 @@ public class Main {
     public static int n;
     public static int m;
     public static int[][] grid;
+    public static int[][] tmp_grid;
     public static int[][] marbles;
     public static int[] check;
     public static int[] dx = {-1, 1, 0, 0};
@@ -12,31 +13,11 @@ public class Main {
         return (x >= 0 && x < n && y >= 0 && y < n);
     }
 
-    public static void same(){
-        for (int i = 0; i < m; i++){
-            if (check[i] > 0)
-                    continue ;
-
-            for (int j = 0; j < m; j++){
-                if (i == j)
-                    continue ;
- 
-                if (marbles[i][0] == marbles[j][0] 
-                    && marbles[i][1] == marbles[j][1]){
-                        check[j]++;
-                        check[i]++;
-                    }
-            }
-        }
-    }
-
     public static void move(){
         for (int i = 0; i < m; i++){
-            if (check[i] > 0)
+            if (marbles[i][0] == -1)
                 continue ;
-            
-            // System.out.print(i + " ");
-            // System.out.println(marbles[i][0] + " " + marbles[i][1]);
+                
             int x = marbles[i][0];
             int y = marbles[i][1];
 
@@ -55,11 +36,19 @@ public class Main {
             }
             marbles[i][0] = x + dx[idx];
             marbles[i][1] = y + dy[idx];
-            // System.out.print(i + " ");
-            // System.out.println(marbles[i][0] + " " + marbles[i][1]);
+            
+            if (tmp_grid[marbles[i][0]][marbles[i][1]] == 0)
+                tmp_grid[marbles[i][0]][marbles[i][1]] = i + 1;
+            else{
+                int flag = tmp_grid[marbles[i][0]][marbles[i][1]];
+                // System.out.println(flag);
+                tmp_grid[marbles[i][0]][marbles[i][1]] = -1;
+                if (flag != -1)
+                    marbles[flag - 1][0] = -1;
+                
+                marbles[i][0] = -1;
+            }
         }
-        same();
-
     }
 
     public static void main(String[] args) {
@@ -80,13 +69,13 @@ public class Main {
         // 두개 이상이 같은 위치가 되면 사라짐
         check = new int[m];
         for (int i = 0; i < t; i++){
-            // System.out.println(i);
+            tmp_grid = new int[n][n];
             move();
         }
 
         int res = 0;
         for (int i = 0; i < m; i++){
-            if (check[i] == 0)
+            if (marbles[i][0] > 0)
                 res++;
         }
 

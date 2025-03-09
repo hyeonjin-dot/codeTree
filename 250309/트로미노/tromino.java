@@ -5,11 +5,20 @@ public class Main {
     public static int n;
     public static int m;
 
-    public static int[] dx = {0, 1, 2, 0, 0, -1, -2, 0};
-    public static int[] dy = {0, 0, 0, 1, 2, 0, 0, -1};
+    // 3칸 직선 이동 (가로 또는 세로)
+    public static int[][] dx = {
+        {0, 0, 1},  // 기본 L자 (아래로 꺾임)
+        {0, 1, 1},  // 90도 회전 (오른쪽으로 꺾임)
+        {1, 1, 0},  // 180도 회전 (위로 꺾임)
+        {1, 0, 0}   // 270도 회전 (왼쪽으로 꺾임)
+    };
 
-    public static int[] ldx = {0, 1, 1, 1, 0, -1, -1, -1};
-    public static int[] ldy = {1, 0, -1, 1, -1, 1, 0, -1};
+    public static int[][] dy = {
+        {1, 2, 0},  // 기본 L자 (아래로 꺾임)
+        {1, 0, 1},  // 90도 회전 (오른쪽으로 꺾임)
+        {0, 1, 1},  // 180도 회전 (위로 꺾임)
+        {0, 1, 2}   // 270도 회전 (왼쪽으로 꺾임)
+    };
 
     public static boolean inRange(int x, int y) {
         return (x >= 0 && x < n && y >= 0 && y < m);
@@ -33,16 +42,16 @@ public class Main {
             }
         }
 
-        // 2. L자형 블록 (8가지 방향 고려)
+        // 2. L자형 블록 (4가지 방향만 탐색)
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                for (int k = 0; k < 8; k++) {  // 8방향 탐색
+                for (int d = 0; d < 4; d++) {  // 4방향 탐색
                     int sum = grid[i][j];  // 기준점 포함
                     boolean valid = true;
 
-                    for (int d = 0; d < 3; d++) {
-                        int nx = i + dx[d] + ldx[k];
-                        int ny = j + dy[d] + ldy[k];
+                    for (int k = 0; k < 3; k++) {  // 나머지 3칸 확인
+                        int nx = i + dx[d][k];
+                        int ny = j + dy[d][k];
 
                         if (!inRange(nx, ny)) {
                             valid = false;

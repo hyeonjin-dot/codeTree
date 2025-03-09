@@ -46,7 +46,7 @@ public class Main {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 for (int d = 0; d < 4; d++) {  // 4방향 탐색
-                    int sum = grid[i][j];  // 기준점 포함
+                    int sum = 0;  // 기준점 포함
                     boolean valid = true;
 
                     for (int k = 0; k < 3; k++) {  // 나머지 3칸 확인

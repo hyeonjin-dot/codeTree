@@ -52,6 +52,11 @@ public class Main {
         bombs = new int[n];
         for (int i = 0; i < n; i++)
             bombs[i] = sc.nextInt();
+
+        if (m == 1){
+            System.out.print(0);
+            return ;
+        }
         
         boolean erased = true;
         int size = 0;
@@ -61,7 +66,7 @@ public class Main {
         }
 
         System.out.println(size);
-        
+
         for (int i = 0; i < n; i++){
             if (bombs[i] > 0)
                 System.out.println(bombs[i]);

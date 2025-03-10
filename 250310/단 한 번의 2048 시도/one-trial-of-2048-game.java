@@ -48,20 +48,24 @@ public class Main {
             if (flag == 0){
                 idx = 0;
                 for (int j = 0; j < 4; j++){
-                    if (j < 3 && grid[i][j] == grid[i][j + 1]){
-                        tmp[i][idx++] =  2 * grid[i][j];
-                        j++;
-                    }else if (grid[i][j] > 0)
-                        tmp[i][idx++] = grid[i][j];
+                    if (grid[i][j] > 0){
+                        if (j < 3 && grid[i][j] == grid[i][j + 1]){
+                            tmp[i][idx++] =  2 * grid[i][j];
+                            j++;
+                        }else
+                            tmp[i][idx++] = grid[i][j];
+                    }
                 }
             }else {
                 idx = 3;
                 for (int j = 3; j >= 0; j--){
-                    if (j > 0 && grid[i][j] == grid[i][j - 1]){
-                        tmp[i][idx--] =  2 * grid[i][j];
-                        j--;
-                    }else if (grid[i][j] > 0)
-                        tmp[i][idx--] = grid[i][j];
+                    if (grid[i][j] > 0){
+                        if (j > 0 && grid[i][j] == grid[i][j - 1]){
+                            tmp[i][idx--] =  2 * grid[i][j];
+                            j--;
+                        }else
+                            tmp[i][idx--] = grid[i][j];
+                    }
                 }
             }
         }

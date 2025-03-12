@@ -41,6 +41,9 @@ public class Main {
         if (str.charAt(0) == str.charAt(1) || str.charAt(0) == str.charAt(2)
             || str.charAt(1) == str.charAt(2))
                 return false;
+        
+        if (str.charAt(0) == '0' || str.charAt(1) == '0' || str.charAt(2) == '0')
+            return false;
 
         for (int i = 0; i < n; i++){
             if (!checkSame(i, x) || !checkHave(i, x))

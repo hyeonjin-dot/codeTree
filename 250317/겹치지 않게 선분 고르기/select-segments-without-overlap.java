@@ -38,7 +38,7 @@ public class Main {
             segments[i][1] = sc.nextInt();
         }
 
-        Arrays.sort(segments, (a, b) -> Integer.compare(a[0], b[0]));
+        Arrays.sort(segments, (a, b) -> Integer.compare(a[1], b[1]));
 
         max = 0;
         for (int i = 0; i < n; i++)

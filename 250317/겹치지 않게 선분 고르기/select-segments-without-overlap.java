@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static int n;
@@ -37,7 +37,9 @@ public class Main {
             segments[i][0] = sc.nextInt();
             segments[i][1] = sc.nextInt();
         }
-        
+
+        Arrays.sort(segments, (a, b) -> Integer.compare(a[0], b[0]));
+
         max = 0;
         for (int i = 0; i < n; i++)
             findMax(i);

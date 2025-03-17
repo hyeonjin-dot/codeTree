@@ -8,13 +8,13 @@ public class Main {
     public static void findMax(int idx){
         int[] tmp = new int[1001];
         
-        for (int i = segments[idx][0]; i < segments[idx][1]; i++)
+        for (int i = segments[idx][0]; i <= segments[idx][1]; i++)
             tmp[i]++;
 
         int cnt = 1;
         for (int i = idx + 1; i < n; i++){
             boolean vaild = true;
-            for (int j = segments[i][0]; j < segments[i][1]; j++){
+            for (int j = segments[i][0]; j <= segments[i][1]; j++){
                 if (tmp[j] == 0)
                     tmp[j]++;
                 else{

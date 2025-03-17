@@ -12,7 +12,7 @@ public class Main {
         for (int i = 0; i < n; i++){
             int move = i;
             int height = 0;
-            while (height < m){
+            while (height < 15){
                 if (ladder[move][height] != 0)
                     move++;
                 else if (move != 0 && ladder[move - 1][height] != 0)
@@ -29,7 +29,7 @@ public class Main {
         for (int i = 0; i < n; i++){
             int move = i;
             int height = 0;
-            while (height < m){
+            while (height < 15){
                 if (in.contains(ladder[move][height])){
                     move++;
                 }else if (move > 0 && in.contains(ladder[move - 1][height]))
@@ -72,7 +72,7 @@ public class Main {
         n = sc.nextInt();
         m = sc.nextInt();
 
-        ladder = new int[n][m];
+        ladder = new int[n][15];
         for(int i = 0; i < m; i++){
             int a = sc.nextInt() - 1;
             int b = sc.nextInt() - 1;

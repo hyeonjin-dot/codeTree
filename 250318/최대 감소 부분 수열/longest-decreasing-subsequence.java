@@ -22,6 +22,8 @@ public class Main {
                         break ;
                     }
                 }
+                if (dp[i] == 0)
+                    dp[i] = 1;
             }
         }
         Arrays.sort(dp);

@@ -38,7 +38,8 @@ public class Main {
 
         for (int i = 0; i < n; i++){
             coin[i] = sc.nextInt();
-            dp[coin[i]] = 1;
+            if (coin[i] <= m)
+                dp[coin[i]] = 1;
         }
 
         dp[0] = 0;

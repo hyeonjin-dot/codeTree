@@ -12,6 +12,7 @@ public class Main {
         m = sc.nextInt();
         w = new int[n];
         v = new int[n];
+
         for (int i = 0; i < n; i++) {
             w[i] = sc.nextInt();
             v[i] = sc.nextInt();
@@ -19,22 +20,25 @@ public class Main {
 
         int[] dp = new int[m + 1];
 
-        for (int i = 0; i < n; i++){
-            if (dp[w[i]] == 0)
-                dp[w[i]] = v[i];
-            else
-                dp[w[i]] = Math.max(dp[w[i]], v[i]);
-        }
+        // for (int i = 0; i < n; i++){
+        //     if (dp[w[i]] == 0)
+        //         dp[w[i]] = v[i];
+        //     else
+        //         dp[w[i]] = Math.max(dp[w[i]], v[i]);
+        // }
 
         for (int i = 0; i < n; i++){
-            for (int j = w[i]; j <= m; j++){
-                if (dp[m] == 0)
-                    dp[m] = dp[m - w[i]] + v[i];
-                else
-                    dp[m] = Math.max(dp[m], dp[m - w[i]] + v[i]);
+            for (int j = m; j >= w[i]; j--){
+                dp[j] = Math.max(dp[j], dp[j - w[i]] + v[i]);
             }
         }
 
-        System.out.print(dp[m]);
+        int ans = 0;
+
+        for (int i = 0; i <= m; i++){
+            ans = Math.max(ans, dp[i]);
+        }
+
+        System.out.print(ans);
     }
 }

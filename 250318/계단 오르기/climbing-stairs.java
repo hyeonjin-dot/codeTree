@@ -19,7 +19,7 @@ public class Main {
         dp[1] = 0;
         dp[2] = 1;
         dp[3] = 1;
-        dp[4] = 2;
+        dp[4] = 1;
         dp[5] = 2;
 
         System.out.print(find(n));

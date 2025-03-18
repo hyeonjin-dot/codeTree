@@ -4,10 +4,10 @@ public class Main {
     public static int[] dp;
 
     public static int find(int num){
-        if (num <= 5)
-            return dp[num];
+        for (int i = 4; i <= num; i++)
+            dp[i] = (dp[i - 2] + dp[i - 3]) % 10007;
         
-        return find(num - 2) + find(num - 3);
+        return dp[num];
     }
 
     public static void main(String[] args) {
@@ -19,8 +19,6 @@ public class Main {
         dp[1] = 0;
         dp[2] = 1;
         dp[3] = 1;
-        dp[4] = 1;
-        dp[5] = 2;
 
         System.out.print(find(n));
     }

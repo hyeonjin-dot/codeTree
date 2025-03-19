@@ -47,7 +47,7 @@ public class Main {
         visited = new boolean[n][m];
         bfs();
 
-        if (visited[n - 1][n - 1])
+        if (visited[n - 1][m - 1])
             System.out.print(1);
         else
             System.out.print(0);

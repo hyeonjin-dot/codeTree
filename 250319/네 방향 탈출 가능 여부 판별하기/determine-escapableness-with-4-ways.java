@@ -9,7 +9,7 @@ public class Main {
     public static Queue<int[]> que = new LinkedList<>();
 
     public static boolean canGo(int x, int y){
-        return (x >= 0 && x < n && y < n && y >= 0
+        return (x >= 0 && x < n && y < m && y >= 0
                 && grid[x][y] == 1);
     }
 

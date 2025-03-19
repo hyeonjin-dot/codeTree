@@ -20,13 +20,19 @@ public class Main {
             return ;
         }
 
-        for (int i = idx; i < n; i++){
-            lst.add(A[i]);
-            find(idx + 1);
-            lst.remove(lst.size() - 1);
+        if (idx >= n){
+            if (lst.size() == m)
+                max = Math.max(max, findXor());
+            return ;
         }
 
-        
+        // for (int i = idx; i < n; i++){
+            lst.add(A[idx]);
+            find(idx + 1);
+            lst.remove(lst.size() - 1);
+            find(idx + 1);
+        // }
+
         return ;
     }
 

@@ -4,39 +4,32 @@ public class Main {
     public static int n;
     public static StringBuffer str = new StringBuffer();
     public static long min;
+    public static boolean found;
 
-    public static long change(){
+    public static void change(){
         String tmp = str.toString();
 
-        int len = tmp.length();
-        long res = 0;
-
-        for (int i = 0; i < len; i++){
-            res += (long)(tmp.charAt(i) - '0');
-            if (i != len - 1)
-                res *= 10;
-        }
-        return res;
+        for (int i = 0; i < str.length(); i++)
+            System.out.print(str.charAt(i));
     }
 
     public static boolean isValid(){
         int len = str.length();
+        String copy = str.toString();
 
         if (n == 1)
             return true;
 
-        for (int i = 0; i < len - 1; i++){
-            for (int j = 1; j <= len / 2; j++){
-                if (i + j >= len)
-                    continue ;
-                String tmp = str.toString().substring(i, i + j);
-                String other = "";
-                if (i + 2 * j < len)
-                    other = str.toString().substring(i + j, i + 2 * j);
-                else
-                    other = str.toString().substring(i + j);
-                if (other.contains(tmp))
-                    return false;
+        for (int i = 0; i < len - 1; i++) {
+            for (int j = 1; i + 2 * j <= len; j++) {
+                boolean same = true;
+                for (int k = 0; k < j; k++) {
+                    if (str.charAt(i + k) != str.charAt(i + j + k)) {
+                        same = false;
+                        break;
+                    }
+                }
+                if (same) return false;
             }
         }
 
@@ -44,16 +37,24 @@ public class Main {
     }
 
     public static void find(int idx){
+        if (found)
+            return ;
+
         if (idx == n){
-            if (isValid())
-                min = Math.min(change(), min);
+            change();
+            found = true;
             return ;
         }
 
         for (int i = 4; i <= 6; i++){
             char a = (char)('0' + i);
+
+            if (str.length() > 0 && str.charAt(str.length() - 1) == a)
+                continue;
+
             str.append(a);
-            find(idx + 1);
+            if (isValid())
+                find(idx + 1);
             str.deleteCharAt(str.length() - 1);
         }
     }
@@ -61,9 +62,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
-        min = Integer.MAX_VALUE;
-
+        min = Long.MAX_VALUE;
+        found = false;
         find(0);
-        System.out.print(min);
     }
 }

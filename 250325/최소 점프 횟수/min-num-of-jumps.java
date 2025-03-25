@@ -8,7 +8,7 @@ public class Main {
 
     public static void find(int idx){
         if (idx == n - 1){
-            if (lst.size() > 1)
+            //if (lst.size() > 1)
                 min = Math.min(min, lst.size());
             return ;
         }

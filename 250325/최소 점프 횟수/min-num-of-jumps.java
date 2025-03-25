@@ -13,7 +13,7 @@ public class Main {
             return ;
         }
 
-        if (arr[idx] == 0)
+        if (idx >= n || arr[idx] == 0)
             return ;
 
         lst.add(arr[idx]);

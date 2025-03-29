@@ -35,29 +35,24 @@ public class Main {
 
         visited = new boolean[n][n];
         max = 0;
+        int boomCnt = 0;
         for (int i = 0; i < n; i++){
             for (int j = 0; j < n; j++){
                 if (!visited[i][j]){
                     cnt = 0;
                     dfs(i, j, grid[i][j]);
-                    if (boom[grid[i][j]] < cnt)
-                        boom[grid[i][j]] = cnt;
+                    if (cnt >= 4)
+                        boomCnt++;
                     max = Math.max(max, cnt);
                 }
             }
         }
 
         if (max < 4){
-            Arrays.sort(boom);
-            System.out.print("0 " + boom[100]);
+            System.out.print("0 " + max);
             return ;
         }
 
-        cnt = 0;
-        for (int i = 1; i <= 100; i++){
-            if (boom[i] >= 4)
-                cnt++;
-        }
-        System.out.print(cnt + " " + max);
+        System.out.print(boomCnt + " " + max);
     }
 }

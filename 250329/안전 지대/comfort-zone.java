@@ -38,7 +38,7 @@ public class Main {
         }
 
         max = 0;
-        int[] check = new int[maxHeigh];
+        int[] check = new int[maxHeigh + 1];
         for (int heigh = 1; heigh < maxHeigh; heigh++){
             int cnt = 0;
             visited = new boolean[n][m];
@@ -54,7 +54,7 @@ public class Main {
             check[heigh] = cnt;
         }
 
-        for (int i = 0; i < maxHeigh; i++){
+        for (int i = 1; i <= maxHeigh; i++){
             if (check[i] == max){
                 System.out.print(i + " " + max);
                 break ;

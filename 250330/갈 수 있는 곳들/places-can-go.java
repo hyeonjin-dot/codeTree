@@ -58,11 +58,12 @@ public class Main {
         }
 
         cnt = 0;
+        visited = new boolean[n][n];
         visitedCnt = new int[n][n];
         for (int i = 0; i < k; i++){
             que = new LinkedList<>();
             que.add(new int[]{starts[i][0], starts[i][1]});
-            visited = new boolean[n][n];
+            
             visited[starts[i][0]][starts[i][1]] = true;
             dfs();
         }

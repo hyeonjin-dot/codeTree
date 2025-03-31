@@ -8,7 +8,6 @@ public class Main {
     public static Queue<int[]> q = new LinkedList<>();
     public static int[] dx = {0, 0, 1, -1};
     public static int[] dy = {1, -1, 0, 0};
-    public static List<int[]> lst = new ArrayList<>();
     public static boolean[][] visited;
 
     public static boolean inRange(int x, int y){
@@ -69,22 +68,17 @@ public class Main {
                 grid[i][j] = sc.nextInt();
         r = sc.nextInt() - 1;
         c = sc.nextInt() - 1;
-        
-        q.add(new int[]{r, c});
-        visited = new boolean[n][n];
-        visited[r][c] = true;
-        lst.add(bfs());
 
-        for (int i = 1; i < k; i++){
+        for (int i = 0; i < k; i++){
+            q.add(new int[]{r, c});
             visited = new boolean[n][n];
-            int[] tmp = lst.get(lst.size() - 1);
-            visited[tmp[0]][tmp[1]] = true;
-            q.add(tmp);
-            lst.add(bfs());
+            visited[r][c] = true;
+            int[] fir = bfs();
+            r = fir[0];
+            c = fir[1];
         }
 
-        int[] tmp = lst.get(lst.size() - 1);
-        System.out.print(tmp[0] + 1 + " " + (tmp[1] + 1));
+        System.out.print(r + 1 + " " + (c+ 1));
 
     }
 }

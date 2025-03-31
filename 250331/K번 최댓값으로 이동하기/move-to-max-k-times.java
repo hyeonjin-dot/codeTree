@@ -40,7 +40,7 @@ public class Main {
 
         for (int i = 0; i < n; i++){
             for (int j = 0; j < n; j++){
-                if (grid[i][j] > max)
+                if (i != res[0] && j != res[1] && grid[i][j] > max)
                     break ;
                 if (grid[i][j] == max){
                     return (new int[]{i, j});

@@ -17,7 +17,8 @@ public class Main {
 
     public static int[] bfs(){
         int max = 0;
-        int num = grid[q.peek()[0]][q.peek()[1]];
+        int[] res = q.peek();
+        int num = grid[res[0]][res[1]];
         
         while (!q.isEmpty()){
             int[] tmp = q.poll();
@@ -44,7 +45,7 @@ public class Main {
             }
         }
 
-        return new int[]{0, 0};
+        return res;
     }
 
     public static void main(String[] args) {

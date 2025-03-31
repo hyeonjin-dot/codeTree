@@ -75,7 +75,6 @@ public class Main {
         lst.add(bfs());
 
         for (int i = 1; i < k; i++){
-            visited = new boolean[n][n];
             int[] tmp = lst.get(lst.size() - 1);
             visited[tmp[0]][tmp[1]] = true;
             q.add(tmp);

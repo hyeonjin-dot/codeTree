@@ -9,7 +9,6 @@ public class Main {
     public static int[] dx = {0, 0, 1, -1};
     public static int[] dy = {1, -1, 0, 0};
     public static List<int[]> lst = new ArrayList<>();
-    public static List<int[]> candi = new ArrayList<>();
     public static boolean[][] visited;
 
     public static boolean inRange(int x, int y){
@@ -22,7 +21,7 @@ public class Main {
         int num = grid[res[0]][res[1]];
         // System.out.println(num);
 
-        candi.clear();
+         List<int[]> candi = new ArrayList<>();
         
         while (!q.isEmpty()){
             int[] tmp = q.poll();

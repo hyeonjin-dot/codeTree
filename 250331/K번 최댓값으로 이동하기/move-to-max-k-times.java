@@ -1,10 +1,7 @@
 import java.util.*;
 public class Main {
     public static int n;
-    public static int k;
     public static int[][] grid;
-    public static int r;
-    public static int c;
     public static Queue<int[]> q = new LinkedList<>();
     public static int[] dx = {0, 0, 1, -1};
     public static int[] dy = {1, -1, 0, 0};
@@ -18,7 +15,6 @@ public class Main {
         int max = 0;
         int[] res = q.peek();
         int num = grid[res[0]][res[1]];
-        // System.out.println(num);
 
          List<int[]> candi = new ArrayList<>();
         
@@ -26,7 +22,6 @@ public class Main {
             int[] tmp = q.poll();
             int x = tmp[0];
             int y = tmp[1];
-            // int num = grid[x][y];
 
             for (int i = 0; i < 4; i++){
                 int nx = x + dx[i];
@@ -38,7 +33,7 @@ public class Main {
                         candi.add(new int[]{nx, ny});
                     }else if (max == grid[nx][ny])
                         candi.add(new int[]{nx, ny});
-                    visited[x][y] = true;
+                    visited[nx][ny] = true;
                     q.add(new int[]{nx, ny});
                 }
             }
@@ -61,13 +56,13 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
-        k = sc.nextInt();
+        int k = sc.nextInt();
         grid = new int[n][n];
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++)
                 grid[i][j] = sc.nextInt();
-        r = sc.nextInt() - 1;
-        c = sc.nextInt() - 1;
+        int r = sc.nextInt() - 1;
+        int c = sc.nextInt() - 1;
 
         for (int i = 0; i < k; i++){
             q.add(new int[]{r, c});
@@ -78,7 +73,7 @@ public class Main {
             c = fir[1];
         }
 
-        System.out.print(r + 1 + " " + (c+ 1));
+        System.out.print(r + 1 + " " + (c + 1));
 
     }
 }

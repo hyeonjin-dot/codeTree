@@ -9,6 +9,7 @@ public class Main {
     public static int[] dx = {0, 0, 1, -1};
     public static int[] dy = {1, -1, 0, 0};
     public static List<int[]> lst = new ArrayList<>();
+    public static List<int[]> candi = new ArrayList<>();
     public static boolean[][] visited;
 
     public static boolean inRange(int x, int y){
@@ -26,29 +27,35 @@ public class Main {
             int x = tmp[0];
             int y = tmp[1];
             // int num = grid[x][y];
-            visited[x][y] = true;
 
             for (int i = 0; i < 4; i++){
                 int nx = x + dx[i];
                 int ny = y + dy[i];
                 if (inRange(nx, ny) && !visited[nx][ny] && grid[nx][ny] < num){
-                    max = Math.max(max, grid[nx][ny]);
+                    if (max < grid[nx][ny]){
+                        candi.clear();
+                        max = Math.max(max, grid[nx][ny]);
+                        candi.add(new int[]{nx, ny});
+                    }else if (max == grid[nx][ny])
+                        candi.add(new int[]{nx, ny});
+                    visited[x][y] = true;
                     q.add(new int[]{nx, ny});
                 }
             }
         }
 
-        for (int i = 0; i < n; i++){
-            for (int j = 0; j < n; j++){
-                if (i != res[0] && j != res[1] && grid[i][j] > max)
-                    break ;
-                if (grid[i][j] == max){
-                    return (new int[]{i, j});
+        if (candi.size() == 0)
+            return res;
+        else {
+            Collections.sort(candi, new Comparator<int[]>() {
+                @Override
+                public int compare(int[] a, int[] b) {
+                    if (a[0] != b[0]) return a[0] - b[0];  // x 좌표 기준
+                    return a[1] - b[1];                    // x가 같다면 y 기준
                 }
-            }
+            });
+            return candi.get(0);
         }
-
-        return res;
     }
 
     public static void main(String[] args) {
@@ -64,11 +71,14 @@ public class Main {
         
         q.add(new int[]{r, c});
         visited = new boolean[n][n];
+        visited[r][c] = true;
         lst.add(bfs());
 
         for (int i = 1; i < k; i++){
             visited = new boolean[n][n];
-            q.add(lst.get(lst.size() - 1));
+            int[] tmp = lst.get(lst.size() - 1);
+            visited[tmp[0]][tmp[1]] = true;
+            q.add(tmp);
             lst.add(bfs());
         }
 

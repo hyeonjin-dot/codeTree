@@ -19,6 +19,7 @@ public class Main {
         int max = 0;
         int[] res = q.peek();
         int num = grid[res[0]][res[1]];
+        // System.out.println(num);
         
         while (!q.isEmpty()){
             int[] tmp = q.poll();
@@ -39,6 +40,8 @@ public class Main {
 
         for (int i = 0; i < n; i++){
             for (int j = 0; j < n; j++){
+                if (grid[i][j] > max)
+                    break ;
                 if (grid[i][j] == max){
                     return (new int[]{i, j});
                 }

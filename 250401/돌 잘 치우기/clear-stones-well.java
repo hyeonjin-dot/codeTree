@@ -16,19 +16,22 @@ public class Main {
 
     public static void find(int idx){
         if (rock.size() == m){
+            visited = new boolean[n][n];
+            q = new LinkedList<>();
+
             for (int i = 0; i < k; i++){
-                q.add(new int[]{startPoints[i][0], startPoints[i][1]});
-                visited = new boolean[n][n];
-                visited[startPoints[i][0]][startPoints[i][1]] = true;
-                bfs();
-                cnt = Math.max(cnt, countVisited());
+                int sx = startPoints[i][0], sy = startPoints[i][1];
+                visited[sx][sy] = true;
+                q.add(new int[]{sx, sy});
             }
+
+            bfs();
+            cnt = Math.max(cnt, countVisited());
             return ;
         }
 
         if (idx == lst.size())
             return;
-        
 
         rock.add(lst.get(idx));
         find(idx + 1);
@@ -50,14 +53,6 @@ public class Main {
     }
 
     public static boolean canGo(int x, int y){
-        // if (lst.size() == m){
-        //     if (grid[x][y] == 1)
-        //         return false;
-        // }else {
-        //     if (grid[x][y] == 1)
-        //         lst.add(new int[]{x, y});
-        // }
-
         if (grid[x][y] == 1){
             for (int[] r : rock) {
                 if (r[0] == x && r[1] == y)
@@ -120,17 +115,6 @@ public class Main {
         rock = new ArrayList<>();
         cnt = 0;
         find(0);
-        
-        // int cnt = 0;
-
-        // for (int i = 0; i < k; i++){
-        //     q.add(new int[]{startPoints[i][0], startPoints[i][1]});
-        //     visited = new boolean[n][n];
-        //     visited[startPoints[i][0]][startPoints[i][1]] = true;
-        //     rock = new ArrayList<>();
-        //     bfs();
-        //     cnt = Math.max(cnt, countVisited());
-        // }
 
         System.out.print(cnt);
 

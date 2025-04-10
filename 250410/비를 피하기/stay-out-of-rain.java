@@ -43,9 +43,9 @@ public class Main {
         for (int i = 0; i < n; i++){
             for (int j = 0; j < n; j++){
                 if (a[i][j] == 2){
-                    if (res[i][j] > 0)
+                    if (res[i][j] > 0 && visited[i][j] > 0)
                         res[i][j] = Math.min(visited[i][j], res[i][j]);
-                    else
+                    else if (visited[i][j] > 0)
                         res[i][j] = visited[i][j];
                 }
             }

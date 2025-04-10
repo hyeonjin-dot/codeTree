@@ -57,9 +57,9 @@ public class Main {
             for (int j = y; j < n; j++){
                 if (grid[i][j] == 1){
                     erased[i][j] = 0;
-                    eraseWall(i + 1, j + 1, cnt + 1);
+                    eraseWall(i, j + 1, cnt + 1);
                     erased[i][j] = 1;
-                    eraseWall(i + 1, j + 1, cnt);
+                    eraseWall(i, j + 1, cnt);
                 }
             }
         }        
@@ -83,7 +83,9 @@ public class Main {
         r2 = sc.nextInt() - 1;
         c2 = sc.nextInt() - 1;
 
-        erased = grid;
+        erased = new int[n][n];
+        for (int i = 0; i < n; i++)
+            erased[i] = grid[i].clone();
         res = -1;
         eraseWall(0, 0, 0);
 

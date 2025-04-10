@@ -12,6 +12,8 @@ public class Main {
     public static boolean[][] visited;
     public static int[] dx = {0, 0, -1, 1};
     public static int[] dy = {-1, 1, 0, 0};
+    public static int[][] erased;
+    public static int res;
 
     public static boolean inRange(int x, int y){
         return (x >= 0 && x < n && y >= 0 && y < n);
@@ -23,26 +25,44 @@ public class Main {
             int x = tmp[0];
             int y = tmp[1];
             int move = tmp[2];
-            int broken = tmp[3];
             
-            if (x == r2 && y == c2 && broken <= k)
+            if (x == r2 && y == c2)
                 return move;
             
             for (int i = 0; i < 4; i++){
                 int nx = x + dx[i];
                 int ny = y + dy[i];
-                if (inRange(nx, ny) && !visited[nx][ny]){
-                    if (grid[nx][ny] == 0){
-                        visited[nx][ny] = true;
-                        q.add(new int[]{nx, ny, move + 1, broken});
-                    }else if (broken < k){
-                        visited[nx][ny] = true;
-                        q.add(new int[]{nx, ny, move + 1, broken + 1});
-                    }
+                if (inRange(nx, ny) && !visited[nx][ny] && grid[nx][ny] == 0){
+                    visited[nx][ny] = true;
+                    q.add(new int[]{nx, ny, move + 1});
                 }
             }
         }
         return -1;
+    }
+
+    public static void eraseWall(int x, int y, int cnt){
+        if (cnt == k){
+            visited = new boolean[n][n];
+            q.add(new int[]{r1, c1, 0, 0});
+            if (res != -1)
+                res = Math.min(res, bfs());
+            else
+                res = bfs();
+            return;
+        }
+
+        for (int i = x; i < n; i++){
+            for (int j = y; j < n; j++){
+                if (grid[i][j] == 1){
+                    erased[i][j] = 0;
+                    eraseWall(i + 1, j + 1, cnt + 1);
+                    erased[i][j] = 1;
+                    eraseWall(i + 1, j + 1, cnt);
+                }
+            }
+        }        
+
     }
 
     public static void main(String[] args) {
@@ -61,10 +81,12 @@ public class Main {
         c1 = sc.nextInt() - 1;
         r2 = sc.nextInt() - 1;
         c2 = sc.nextInt() - 1;
-        
-        visited = new boolean[n][n];
-        q.add(new int[]{r1, c1, 0, 0});
 
-        System.out.print(bfs());
+        erased = grid;
+        res = -1;
+        eraseWall(0, 0, 0);
+
+        System.out.print(res);
+        
     }
 }

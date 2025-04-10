@@ -32,7 +32,7 @@ public class Main {
             for (int i = 0; i < 4; i++){
                 int nx = x + dx[i];
                 int ny = y + dy[i];
-                if (inRange(nx, ny) && !visited[nx][ny] && grid[nx][ny] == 0){
+                if (inRange(nx, ny) && !visited[nx][ny] && erased[nx][ny] == 0){
                     visited[nx][ny] = true;
                     q.add(new int[]{nx, ny, move + 1});
                 }
@@ -44,11 +44,12 @@ public class Main {
     public static void eraseWall(int x, int y, int cnt){
         if (cnt == k){
             visited = new boolean[n][n];
-            q.add(new int[]{r1, c1, 0, 0});
-            if (res != -1)
-                res = Math.min(res, bfs());
-            else
-                res = bfs();
+            q.add(new int[]{r1, c1, 0});
+            int bfsAnswer = bfs();
+            if (res != -1 && bfsAnswer != -1)
+                res = Math.min(res, bfsAnswer);
+            else if (res == -1)
+                res = bfsAnswer;
             return;
         }
 

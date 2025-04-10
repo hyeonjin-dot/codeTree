@@ -42,15 +42,16 @@ public class Main {
     }
 
     public static void eraseWall(int x, int y, int cnt){
-        if (cnt == k){
+        if (cnt <= k){
             visited = new boolean[n][n];
             q.add(new int[]{r1, c1, 0});
             int bfsAnswer = bfs();
-            if (res != -1 && bfsAnswer != -1)
-                res = Math.min(res, bfsAnswer);
-            else if (res == -1)
-                res = bfsAnswer;
-            return;
+            if (bfsAnswer != -1) {
+                if (res == -1)
+                    res = bfsAnswer;
+                else
+                    res = Math.min(res, bfsAnswer);
+            }
         }
 
         for (int i = x; i < n; i++){

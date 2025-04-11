@@ -3,6 +3,7 @@ import java.util.*;
 public class Main {
     public static int n;
     public static Queue<int[]> q = new LinkedList<>();
+    public static Set<Integer> set = new HashSet<>();
 
     public static int calculation(int idx, int n){
         if (idx == 0)
@@ -27,8 +28,9 @@ public class Main {
             
             for (int i = 0; i < 4; i++){
                 int nx = calculation(i, x);
-                if (nx == n)
+                if (nx == n || set.contains(nx))
                     continue;
+                set.add(nx);
                 q.add(new int[]{nx, move + 1});
             }
         }
@@ -41,6 +43,7 @@ public class Main {
         n = sc.nextInt();
 
         q.add(new int[]{n, 0});
+        set.add(n);
         System.out.print(dfs());
         
     }

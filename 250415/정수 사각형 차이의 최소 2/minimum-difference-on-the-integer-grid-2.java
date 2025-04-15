@@ -33,7 +33,9 @@ public class Main {
             int newMax = Math.max(curMax, nextVal);
 
             int[] next = dp[nx][ny];
-            if (next == null || newMax - newMin < next[1] - next[0]) {
+            if (next == null || newMax - newMin < next[1] - next[0]
+             || (newMax - newMin == next[1] - next[0]
+                     && (newMin != next[0] || newMax != next[1]))) {
                 dp[nx][ny] = new int[]{newMin, newMax};
                 findDP(nx, ny);
             }
@@ -61,8 +63,8 @@ public class Main {
 
             int[] next = dp[nx][ny];
             if (next == null || newMax - newMin < next[1] - next[0]
-                || (newMax - newMin == next[1] - next[0] && 
-        (newMin > next[0] || newMax < next[1]))) {
+                || (newMax - newMin == next[1] - next[0]
+                     && (newMin != next[0] || newMax != next[1]))) {
                 dp[nx][ny] = new int[]{newMin, newMax};
                 reverseDP(nx, ny);
             }
@@ -83,10 +85,10 @@ public class Main {
                 grid[i][j] = sc.nextInt();
         }
 
-        // for (int i = 0; i < n; i++){
-        //     for (int j = 0; j < n; j++)
-        //         findDP(i, j);
-        // }
+        for (int i = 0; i < n; i++){
+            for (int j = 0; j < n; j++)
+                findDP(i, j);
+        }
 
         // findDP(0, 0);
 
@@ -94,12 +96,12 @@ public class Main {
         //     for (int j = n - 1; j >= 0; j--)
         //         reverseDP(i, j);
         // }
-        reverseDP(n - 1, n - 1);
+        // reverseDP(n - 1, n - 1);
 
-        System.out.print(dp[0][0][1] - dp[0][0][0]);
+        // System.out.print(dp[0][0][1] - dp[0][0][0]);
 
 
         int[] tmp = dp[n - 1][n - 1];
-        // System.out.print(Math.abs(tmp[0] - tmp[1]));
+        System.out.print(Math.abs(tmp[0] - tmp[1]));
     }
 }

@@ -40,24 +40,34 @@ public class Main {
         }
     }
 
-    public static void dfs(int x, int y, int min, int max) {
-        if (x == n - 1 && y == n - 1) {
-            result = Math.min(result, max - min);
-            return;
-        }
+    public static void reverseDP(int x, int y){
+        if (dp[x][y] == null)
+            dp[x][y] = new int[]{grid[x][y], grid[x][y]};
 
-        for (int i = 0; i < 2; i++) {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
+        for (int i = 0; i < 2; i++){
+            int nx = x - dx[i];
+            int ny = y - dy[i];
 
-            if (nx >= 0 && nx < n && ny >= 0 && ny < n && !visited[nx][ny]) {
-                visited[nx][ny] = true;
-                int val = grid[nx][ny];
-                dfs(nx, ny, Math.min(min, val), Math.max(max, val));
-                visited[nx][ny] = false;
+            if (!inRange(nx, ny))
+                continue;
+
+            // 현재까지 min/max
+            int curMin = dp[x][y][0];
+            int curMax = dp[x][y][1];
+
+            int nextVal = grid[nx][ny];
+            int newMin = Math.min(curMin, nextVal);
+            int newMax = Math.max(curMax, nextVal);
+
+            int[] next = dp[nx][ny];
+            if (next == null || newMax - newMin < next[1] - next[0]) {
+                dp[nx][ny] = new int[]{newMin, newMax};
+                reverseDP(nx, ny);
             }
         }
+        
     }
+
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -78,15 +88,11 @@ public class Main {
 
         // findDP(0, 0);
 
-        result = Integer.MAX_VALUE;
-        
-        visited = new boolean[n][n];
-        visited[0][0] = true;
-        dfs(0, 0, grid[0][0], grid[0][0]);
+        reverseDP(n - 1, n - 1);
+        System.out.print(dp[0][0][1] - dp[0][0][0]);
 
-        System.out.print(result);
 
-        // int[] tmp = dp[n - 1][n - 1];
+        int[] tmp = dp[n - 1][n - 1];
         // System.out.print(Math.abs(tmp[0] - tmp[1]));
     }
 }

@@ -4,6 +4,7 @@ public class Main {
     public static int n;
     public static int[][] grid;
     public static int[][][] dp;
+    public static int[][][] revDp;
     public static int[] dx = {1, 0};
     public static int[] dy = {0, 1};
     public static boolean[][] visited;
@@ -43,8 +44,8 @@ public class Main {
     }
 
     public static void reverseDP(int x, int y){
-        if (dp[x][y] == null)
-            dp[x][y] = new int[]{grid[x][y], grid[x][y]};
+        if (revDp[x][y] == null)
+            revDp[x][y] = new int[]{grid[x][y], grid[x][y]};
 
         for (int i = 0; i < 2; i++){
             int nx = x - dx[i];
@@ -54,18 +55,18 @@ public class Main {
                 continue;
 
             // 현재까지 min/max
-            int curMin = dp[x][y][0];
-            int curMax = dp[x][y][1];
+            int curMin = revDp[x][y][0];
+            int curMax = revDp[x][y][1];
 
             int nextVal = grid[nx][ny];
             int newMin = Math.min(curMin, nextVal);
             int newMax = Math.max(curMax, nextVal);
 
-            int[] next = dp[nx][ny];
+            int[] next = revDp[nx][ny];
             if (next == null || newMax - newMin < next[1] - next[0]
                 || (newMax - newMin == next[1] - next[0]
                      && (newMin != next[0] || newMax != next[1]))) {
-                dp[nx][ny] = new int[]{newMin, newMax};
+                revDp[nx][ny] = new int[]{newMin, newMax};
                 reverseDP(nx, ny);
             }
         }
@@ -92,16 +93,17 @@ public class Main {
 
         // findDP(0, 0);
 
-        // for (int i = n - 1; i >= 0; i--){
-        //     for (int j = n - 1; j >= 0; j--)
-        //         reverseDP(i, j);
-        // }
+        revDp = new int[n][n][];
+
+        for (int i = n - 1; i >= 0; i--){
+            for (int j = n - 1; j >= 0; j--)
+                reverseDP(i, j);
+        }
         // reverseDP(n - 1, n - 1);
 
-        // System.out.print(dp[0][0][1] - dp[0][0][0]);
 
-
-        int[] tmp = dp[n - 1][n - 1];
-        System.out.print(Math.abs(tmp[0] - tmp[1]));
+        int forward = dp[n - 1][n - 1][1] - dp[n - 1][n - 1][0];
+        int reverse = revDp[0][0][1] - revDp[0][0][0];
+        System.out.print(Math.min(forward, reverse));
     }
 }

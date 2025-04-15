@@ -60,7 +60,9 @@ public class Main {
             int newMax = Math.max(curMax, nextVal);
 
             int[] next = dp[nx][ny];
-            if (next == null || newMax - newMin < next[1] - next[0]) {
+            if (next == null || newMax - newMin < next[1] - next[0]
+                || (newMax - newMin == next[1] - next[0] && 
+        (newMin > next[0] || newMax < next[1]))) {
                 dp[nx][ny] = new int[]{newMin, newMax};
                 reverseDP(nx, ny);
             }
@@ -88,7 +90,12 @@ public class Main {
 
         // findDP(0, 0);
 
+        // for (int i = n - 1; i >= 0; i--){
+        //     for (int j = n - 1; j >= 0; j--)
+        //         reverseDP(i, j);
+        // }
         reverseDP(n - 1, n - 1);
+
         System.out.print(dp[0][0][1] - dp[0][0][0]);
 
 

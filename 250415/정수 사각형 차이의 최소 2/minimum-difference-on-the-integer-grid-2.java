@@ -1,74 +1,76 @@
 import java.util.*;
 
 public class Main {
-    static class State {
-        int x, y, min, max;
-
-        public State(int x, int y, int min, int max) {
-            this.x = x;
-            this.y = y;
-            this.min = min;
-            this.max = max;
-        }
-    }
-
-    static int n;
-    static int[][] grid;
-    static int[] dx = {0, 1};
-    static int[] dy = {1, 0};
+    public static int n;
+    public static int[][] grid;
+    public static int[] dx = {1, 0};
+    public static int[] dy = {0, 1};
 
     public static boolean inRange(int x, int y) {
-        return x >= 0 && x < n && y >= 0 && y < n;
+        return (x >= 0 && x < n && y >= 0 && y < n);
     }
 
-    public static int bfs() {
-        Queue<State> queue = new LinkedList<>();
-        Set<String> visited = new HashSet<>();
+    // 주어진 최소 min, 최대 max 범위 내에서 (0,0) → (n-1,n-1) 이동 가능한지 확인
+    public static boolean isReachable(int minVal, int maxVal) {
+        if (grid[0][0] < minVal || grid[0][0] > maxVal) return false;
 
-        int initVal = grid[0][0];
-        queue.add(new State(0, 0, initVal, initVal));
-        visited.add("0,0," + initVal + "," + initVal);
+        boolean[][] visited = new boolean[n][n];
+        Queue<int[]> q = new LinkedList<>();
+        q.add(new int[]{0, 0});
+        visited[0][0] = true;
 
-        int result = Integer.MAX_VALUE;
+        while (!q.isEmpty()) {
+            int[] cur = q.poll();
+            int x = cur[0];
+            int y = cur[1];
 
-        while (!queue.isEmpty()) {
-            State cur = queue.poll();
+            if (x == n - 1 && y == n - 1) return true;
 
-            if (cur.x == n - 1 && cur.y == n - 1) {
-                result = Math.min(result, cur.max - cur.min);
-                continue;
-            }
+            for (int d = 0; d < 2; d++) {
+                int nx = x + dx[d];
+                int ny = y + dy[d];
 
-            for (int dir = 0; dir < 2; dir++) {
-                int nx = cur.x + dx[dir];
-                int ny = cur.y + dy[dir];
-
-                if (!inRange(nx, ny)) continue;
-
-                int nextVal = grid[nx][ny];
-                int newMin = Math.min(cur.min, nextVal);
-                int newMax = Math.max(cur.max, nextVal);
-
-                String key = nx + "," + ny + "," + newMin + "," + newMax;
-                if (!visited.contains(key)) {
-                    visited.add(key);
-                    queue.add(new State(nx, ny, newMin, newMax));
+                if (inRange(nx, ny) && !visited[nx][ny]) {
+                    int val = grid[nx][ny];
+                    if (val >= minVal && val <= maxVal) {
+                        visited[nx][ny] = true;
+                        q.add(new int[]{nx, ny});
+                    }
                 }
             }
         }
 
-        return result;
+        return false;
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
         grid = new int[n][n];
+        int minNum = 100, maxNum = 0;
 
         for (int i = 0; i < n; i++)
-            for (int j = 0; j < n; j++)
+            for (int j = 0; j < n; j++) {
                 grid[i][j] = sc.nextInt();
+                minNum = Math.min(minNum, grid[i][j]);
+                maxNum = Math.max(maxNum, grid[i][j]);
+            }
 
-        System.out.println(bfs());
+        int answer = Integer.MAX_VALUE;
+
+        for (int minVal = minNum; minVal <= maxNum; minVal++) {
+            int lo = minVal, hi = maxNum;
+            while (lo <= hi) {
+                int mid = (lo + hi) / 2;
+                if (isReachable(minVal, mid)) {
+                    answer = Math.min(answer, mid - minVal);
+                    hi = mid - 1;
+                } else {
+                    lo = mid + 1;
+                }
+            }
+        }
+
+        System.out.println(answer);
     }
 }

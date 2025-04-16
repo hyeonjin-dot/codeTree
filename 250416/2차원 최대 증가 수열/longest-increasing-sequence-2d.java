@@ -12,7 +12,7 @@ public class Main {
     }
 
     public static void dfs(int x, int y){
-        if (!inRange(x, y) || (x == n - 1 && y == m - 1))
+        if (!inRange(x, y) || x == n - 1 || y == m - 1)
             return ;
 
         for (int i = x + 1; i < n; i++){

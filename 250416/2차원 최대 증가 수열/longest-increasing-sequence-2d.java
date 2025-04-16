@@ -5,6 +5,7 @@ public class Main {
     public static int m;
     public static int[][] grid;
     public static int[][] dp;
+    public static boolean[][] visited;
     public static int max;
 
     public static boolean inRange(int x, int y){
@@ -12,13 +13,14 @@ public class Main {
     }
 
     public static void dfs(int x, int y){
-        if (!inRange(x, y) || x == n - 1 || y == m - 1)
+        if (!inRange(x, y) || visited[x][y] || x == n - 1 || y == m - 1)
             return ;
 
         for (int i = x + 1; i < n; i++){
             for (int j = y + 1; j < m; j++){
-                if (grid[x][y] < grid[i][j]){
+                if (!visited[i][j] && grid[x][y] < grid[i][j]){
                     dp[i][j] = Math.max(dp[x][y] + 1, dp[i][j]);
+                    visited[i][j] = true;
                     max = Math.max(max, dp[i][j]);
                     dfs(i, j);
                 }
@@ -49,6 +51,8 @@ public class Main {
         //     }
         // }
 
+        visited = new boolean[n][m];
+        visited[0][0] = true;
         dp[0][0] = 1;
         max = 1;
         dfs(0, 0);

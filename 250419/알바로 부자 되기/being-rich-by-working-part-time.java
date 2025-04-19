@@ -10,7 +10,7 @@ public class Main {
             s[i][1] = sc.nextInt();
             s[i][2] = sc.nextInt();
         }
-        
+        Arrays.sort(s, Comparator.comparingInt(a -> a[1]));
          // DP 배열 초기화
         int[] dp = new int[n];
         dp[0] = s[0][2]; // 첫 번째 아르바이트의 급여
@@ -22,8 +22,7 @@ public class Main {
             // 현재 아르바이트와 겹치지 않는 이전 아르바이트를 찾아 최대 급여 합산
             for (int j = i - 1; j >= 0; j--) {
                 if (s[j][1] < current[0]) { // 겹치지 않는 경우
-                    maxPay += dp[j];
-                    break;
+                    maxPay = Math.max(maxPay, dp[j] + current[2]);
                 }
             }
             

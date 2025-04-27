@@ -15,7 +15,7 @@ public class Main {
 
         for (int i = n; i > 0; i--){
             for (int cnt = 0; cnt <= 3; cnt++) {
-                if (dp[i][cnt] == Integer.MIN_VALUE)
+                if (dp[i][cnt] == -1)
                     continue;
 
                 // 1칸 이동

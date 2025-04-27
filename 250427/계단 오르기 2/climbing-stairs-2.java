@@ -11,9 +11,10 @@ public class Main {
         int[][] dp = new int[n + 1][4];
         for (int[] arr : dp)
             Arrays.fill(arr, -1);
+
         dp[n][0] = coins[n];
 
-        for (int i = n; i > 0; i--){
+        for (int i = n; i >= 0; i--){
             for (int cnt = 0; cnt <= 3; cnt++) {
                 if (dp[i][cnt] == -1)
                     continue;

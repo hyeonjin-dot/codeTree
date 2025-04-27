@@ -32,7 +32,7 @@ public class Main {
 
         int max = 0;
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i <= 3; i++)
             max = Math.max(dp[0][i], max);
 
         System.out.print(max);

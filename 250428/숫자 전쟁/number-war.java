@@ -17,29 +17,26 @@ public class Main {
         
         dp[0][0] = 0;
 
-        for (int i = 0; i < n; i++){
-            for (int j = 0; j < n; j++){
-                if (dp[i][j] == -1)
-                    continue;
+        for (int i = 1; i <= n; i++){
+            for (int j = 1; j <= n; j++){
+                // if (dp[i][j] == -1)
+                //     continue;
                 
-                if (a[i] <= b[j]){
-                    dp[i + 1][j] = Math.max(dp[i][j], dp[i + 1][j]);
-                    dp[i + 1][j + 1] = Math.max(dp[i][j], dp[i + 1][j + 1]);
+                if (a[i - 1] <= b[j- 1]){
+                    dp[i][j] = Math.max(dp[i][j], dp[i - 1][j]);
+                    dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - 1]);
                 }
-                else if (b[j] < a[i])
-                    dp[i][j + 1] = Math.max(dp[i][j + 1], dp[i][j] + b[j]);
+                else if (b[j - 1] < a[i - 1]){
+                    if (dp[i][j - 1] == -1)
+                        dp[i][j] = Math.max(dp[i][j], b[j - 1]);
+                    else
+                        dp[i][j] = Math.max(dp[i][j], dp[i][j - 1] + b[j - 1]);
+                }
+                    
                 
             }
         }
         
-        int max = 0;
-        for (int i = 0; i <= n; i++){
-            for (int j = 0; j <= n; j++){
-                if (dp[i][j] > -1)
-                    max = Math.max(dp[i][j], max);
-            }
-        }
-
-        System.out.print(max);
+        System.out.print(dp[n][n]);
     }
 }

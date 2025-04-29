@@ -9,8 +9,8 @@ public class Main {
         for (int i = 0; i < n; i++)
             arr[i] = sc.nextInt();
 
-        int[][] dp = new int[n][k + 2];
-        for (int[] tmp : dp)
+        long[][] dp = new long[n][k + 2];
+        for (long[] tmp : dp)
             Arrays.fill(tmp, Integer.MIN_VALUE);
 
         // 초기화
@@ -40,7 +40,7 @@ public class Main {
         //     }
         // }
 
-        int ans = arr[0];
+        long ans = arr[0];
         for (int i = 1; i < n; i++){
             if (arr[i] >= 0) {
                 for(int j = 0; j <= k; j++) {
@@ -48,8 +48,11 @@ public class Main {
                     ans = Math.max(ans, dp[i][j]);
                 }
             } else {
-                for (int j = 0; j < k; j++)
-                    dp[i][j + 1] = Math.max(dp[i][j + 1], dp[i - 1][j] + arr[i]);
+                for (int j = 1; j <= k; j++){
+                    dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - 1] + arr[i]);
+                    dp[i][j] = Math.max(dp[i][j], arr[i]);
+                    ans = Math.max(ans, dp[i][j]);
+                }
             }
 
         }

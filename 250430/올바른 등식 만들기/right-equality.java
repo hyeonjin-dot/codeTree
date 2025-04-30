@@ -11,8 +11,8 @@ public class Main {
         }
         long[][] dp = new long[n][41];
 
-        dp[0][numbers[0] + 20] = 1;
-        dp[0][20 - numbers[0]] = 1;
+        dp[0][numbers[0] + 20]++;
+        dp[0][20 - numbers[0]]++;
 
         for (int i = 1; i < n; i++){
             for (int j = 0; j < 41; j++){

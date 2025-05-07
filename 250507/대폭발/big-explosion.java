@@ -28,8 +28,8 @@ public class Main {
                     if (grid[x][y] == 1){
                         tmp[x][y] = 1;
                         for (int k = 0; k < 4; k++){
-                            int nx = x + i * (dx[k]);
-                            int ny = y + i * (dy[k]);
+                            int nx = x + (int)Math.pow(2, i - 1) * (dx[k]);
+                            int ny = y + (int)Math.pow(2, i - 1) * (dy[k]);
                             if (inRange(nx, ny))
                                 tmp[nx][ny] = 1;
                         }

@@ -24,12 +24,18 @@ public class Main {
         for (int i = 1; i < n; i++){
             for (int c = 1; c <= k; c++){
                 for (int d = 0; d < 2; d++){
-                    if (arr[i] == d){
+                    if (arr[i] == d) {
+                        // 같은 방향 유지
                         dp[i][d][c] = Math.max(dp[i][d][c], dp[i - 1][d][c] + 1);
-                        dp[i][d][c] = Math.max(dp[i][d][c], dp[i-1][1-d][c-1] + (arr[i] == d ? 1 : 0));
+                        // 다른 방향에서 전환해서 옴
+                        if (c > 1)
+                            dp[i][d][c] = Math.max(dp[i][d][c], dp[i - 1][1 - d][c - 1] + 1);
                     } else {
-                        dp[i][d][c] = Math.max(dp[i-1][1-d][c-1] + (arr[i] == d ? 1 : 0), dp[i - 1][d][c]);
-                        // dp[i][d][c] = Math.max(dp[i][d][c], dp[i-1][1-d][c-1] + (arr[i] == d ? 1 : 0));
+                        // 같은 방향에서 그냥 무시 (전환 안 씀)
+                        dp[i][d][c] = Math.max(dp[i][d][c], dp[i - 1][d][c]);
+                        // 다른 방향에서 전환해서 넘어옴
+                        if (c > 1)
+                            dp[i][d][c] = Math.max(dp[i][d][c], dp[i - 1][1 - d][c - 1] + 1);
                     }
                 }
             }

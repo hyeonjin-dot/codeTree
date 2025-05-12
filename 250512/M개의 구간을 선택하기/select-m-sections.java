@@ -3,35 +3,41 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt(); // m-1개 뺄 예정
-        int[] arr = new int[n];
-        int sum = 0;
-
-        for (int i = 0; i < n; i++) {
+        int N = sc.nextInt(); // 총 수
+        int M = sc.nextInt(); // 선택할 구간 수
+        int[] arr = new int[N + 1];
+        int[] prefix = new int[N + 1];
+        for (int i = 1; i <= N; i++) {
             arr[i] = sc.nextInt();
-            sum += arr[i];
+            prefix[i] = prefix[i - 1] + arr[i];
         }
 
-        int[][] dp = new int[n][m];
+        int[][] dp = new int[N + 1][M + 1];
         for (int[] row : dp)
-            Arrays.fill(row, 1001);
+            Arrays.fill(row, Integer.MIN_VALUE);
+        dp[0][0] = 0;
 
-        dp[1][1] = arr[1];
+        for (int i = 1; i <= N; i++) {
+            for (int j = 0; j <= M; j++) {
+                // 1. 구간 선택 X
+                dp[i][j] = Math.max(dp[i][j], dp[i - 1][j]);
+            }
 
-        for (int i = 2; i <= n - 2; i++) { // 맨 앞/뒤 제외
-            for (int k = 1; k < m; k++) {
-                // 선택 안함
-                if (k == 1)
-                    dp[i][k] = Math.min(dp[i - 1][k], arr[i]);
-                else
-                    dp[i][k] = dp[i - 1][k];
-                // 선택함 (i번째 선택, i-1은 건너뛰었어야 함)
-                if (i >= 3 && dp[i - 2][k - 1] < 1001)
-                    dp[i][k] = Math.min(dp[i][k], dp[i - 2][k - 1] + arr[i]);
+            for (int j = 1; j <= M; j++) {
+                // 구간 길이 l, 끝이 i
+                for (int l = 1; l <= i; l++) {
+                    int start = i - l + 1;
+                    int end = i;
+                    int before = start - 2;  // 비연속 조건: start ≥ 이전 end + 2 → 이전 끝 ≤ start - 2
+
+                    if (before >= 0) {
+                        int sum = prefix[end] - prefix[start - 1];
+                        dp[i][j] = Math.max(dp[i][j], dp[before][j - 1] + sum);
+                    }
+                }
             }
         }
-        
-        System.out.println(sum - dp[n - 2][m - 1]);
+
+        System.out.println(dp[N][M]);
     }
 }

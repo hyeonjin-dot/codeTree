@@ -6,6 +6,8 @@ public class Main {
         String p = sc.next().trim();
         
         int pLen = p.length();
+        int sLen = s.length();
+        pLen = Math.min(pLen, sLen);
         boolean result = true;
 
         for (int i = 0; i < pLen; i++){

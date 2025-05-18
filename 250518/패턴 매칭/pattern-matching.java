@@ -16,12 +16,15 @@ public class Main {
             else if (p.charAt(i) == '.')
                 continue;
             else if (i > 0 && p.charAt(i) == '*' && (p.charAt(i - 1) == s.charAt(i - 1) || p.charAt(i - 1) == '.'))
-                break;
+                continue;
             else {
                 result = false;
                 break;
             }
         }
+
+        if (p.length() < s.length() && p.charAt(pLen - 1) != '*')
+            result = false;
 
         if (result)
             System.out.print("true");

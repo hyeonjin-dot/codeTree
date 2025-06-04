@@ -21,10 +21,9 @@ public class Main {
             visited[i].add(i);
         }
 
-        for (int round = 0; round < 3; round++){
-            for (int i = 0; i < k; i++){
-                int a = A[i];
-                int b = B[i];
+        for (int i = 1; i <= 3 * k; i++){
+                int a = A[(i - 1) % k];
+                int b = B[(i - 1) % k];
 
                 int positionA = -1;
                 int positionB = -1;
@@ -42,7 +41,7 @@ public class Main {
                 visited[positionA].add(seat[positionA]);
                 visited[positionB].add(seat[positionB]);
             }
-        }
+        
 
         for (int i = 0; i < n; i++)
             System.out.println(visited[i].size());

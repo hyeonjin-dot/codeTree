@@ -10,10 +10,14 @@ public class Main {
             A[i] = sc.nextInt() - 1;
             B[i] = sc.nextInt() - 1;
         }
+        
+        int[] seat = new int[n]; // seat[i]: i번 자리에 앉아있는 사람
+        int[] pos = new int[n];  // pos[i]: i번 사람이 앉아있는 자리
 
-        int[] seat = new int[n];
-        for (int i = 0; i < n; i++)
-            seat[i] = i; // 사람 자리
+        for (int i = 0; i < n; i++) {
+            seat[i] = i;
+            pos[i] = i;
+        }
         
         HashSet<Integer>[] visited = new HashSet[n];
         for (int i = 0; i < n; i++) {
@@ -21,28 +25,25 @@ public class Main {
             visited[i].add(i);
         }
 
-        for (int i = 1; i <= 3 * k; i++){
-                int a = A[(i - 1) % k];
-                int b = B[(i - 1) % k];
+        for (int i = 0; i < 3 * k; i++){
+            int a = A[i % k];
+            int b = B[i % k];
 
-                int positionA = -1;
-                int positionB = -1;
-                for (int j = 0; j < n; j++){
-                    if (seat[j] == a)
-                        positionA = j;
-                    if (seat[j] == b)
-                        positionB = j;
-                }
+            int personA = seat[a];
+            int personB = seat[b];
 
-                int tmp = seat[positionA];
-                seat[positionA] = seat[positionB];
-                seat[positionB] = tmp;
+            // 자리 교환
+            seat[a] = personB;
+            seat[b] = personA;
 
-                visited[positionA].add(seat[positionA]);
-                visited[positionB].add(seat[positionB]);
-            }
+            // 위치 갱신
+            pos[personA] = b;
+            pos[personB] = a;
+
+            visited[personA].add(b);
+            visited[personB].add(a);
+        }
         
-
         for (int i = 0; i < n; i++)
             System.out.println(visited[i].size());
     }

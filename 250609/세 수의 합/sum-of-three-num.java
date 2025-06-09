@@ -11,15 +11,17 @@ public class Main {
         }
         
         int cnt = 0;
-        
+                
         for (int i = 0; i < n - 1; i++){
             for (int j = i + 1; j < n; j++){
-                long sum = (long)(arr[i] + arr[j]);
-                long target = k - sum;
-                cnt += map.getOrDefault(target, 0);
+                long sum = (long)arr[i] + (long)arr[j];
+                long remain = k - sum;
+                cnt += map.getOrDefault(remain, 0);
+                
                 map.put(sum, map.getOrDefault(sum, 0) + 1);
             }
         }
+
 
         System.out.print(cnt);
     }

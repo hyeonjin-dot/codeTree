@@ -16,7 +16,7 @@ public class Main {
         while (it.hasNext()){
             Entry<String, Integer> entry = it.next();
             // System.out.println(entry.getKey() + " " + );
-            System.out.printf("%s %.4f\n", entry.getKey(), (double)(entry.getValue() * 100 / n));
+            System.out.printf("%s %.4f\n", entry.getKey(), ((double)entry.getValue()/ n));
         }
         // Please write your code here.
     }

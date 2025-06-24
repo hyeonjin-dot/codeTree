@@ -1,38 +1,45 @@
 import java.util.*;
 
+class Pair implements Comparable<Pair>{
+    int x, y;
+
+    public Pair(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public int compareTo(Pair p){
+        if ((p.x + p.y) == (this.x + this.y)){
+            if (p.x == this.x)
+                return this.y - p.y;
+            return this.x - p.x;
+        }
+        return (this.x + this.y) - (p.x + p.y);
+    }
+}
+
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int m = sc.nextInt();
-        int[][] points = new int[n][3];
-        PriorityQueue<Integer> q = new PriorityQueue<>();
+        PriorityQueue<Pair> q = new PriorityQueue<>();
         for (int i = 0; i < n; i++) {
-            points[i][0] = sc.nextInt();
-            points[i][1] = sc.nextInt();
-            points[i][2] = points[i][0] + points[i][1];
-            q.add(points[i][2]);
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            Pair tmp = new Pair(x, y);
+            q.add(tmp);
         }
 
         for (int i = 0; i < m; i++){
-            int min = q.poll();
-            for (int j = 0; j < m; j++){
-                if (points[j][2] == min){
-                    points[j][0] += 2;
-                    points[j][1] += 2;
-                    points[j][2] += 4;
-                    q.add(points[j][2]);
-                    break ;
-                }
-            }
+            Pair min = q.poll();
+            min.x += 2;
+            min.y += 2;
+            q.add(min);
         }
         
-        int min = q.poll();
-        for (int i = 0; i < n; i++){
-            if (points[i][2] == min){
-                System.out.print(points[i][0] + " " + points[i][1]);
-                return ;
-            }
-        }
+        Pair min = q.poll();
+        System.out.print(min.x + " " + min.y);
     }
 }

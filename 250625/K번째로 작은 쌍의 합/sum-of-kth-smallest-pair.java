@@ -17,7 +17,6 @@ public class Main {
 
         Arrays.sort(arr1);
         Arrays.sort(arr2);
-        int cnt = 0;
 
         for (int i = 0; i < n; i++){
             for (int j = 0; j < m; j++){
@@ -29,12 +28,11 @@ public class Main {
                 // else
                 //     max.add(sum);
                 
-                if (min.size() > k)
+                if (min.size() > k){
                     min.poll();
-                    // max.add(min.poll());
-                cnt++;
-                if (cnt > k)
                     break;
+                }
+                    // max.add(min.poll());
             }
         }
 

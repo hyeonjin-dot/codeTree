@@ -15,6 +15,10 @@ public class Main {
         PriorityQueue<Integer> min = new PriorityQueue<>(Collections.reverseOrder());
         // PriorityQueue<Integer> max = new PriorityQueue<>();
 
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        int cnt = 0;
+
         for (int i = 0; i < n; i++){
             for (int j = 0; j < m; j++){
                 int sum = arr1[i] + arr2[j];
@@ -28,6 +32,9 @@ public class Main {
                 if (min.size() > k)
                     min.poll();
                     // max.add(min.poll());
+                cnt++;
+                if (cnt > k)
+                    break;
             }
         }
 

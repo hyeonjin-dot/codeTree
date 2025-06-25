@@ -13,19 +13,21 @@ public class Main {
             arr2[i] = sc.nextInt();
         // 출력할 값 이하값
         PriorityQueue<Integer> min = new PriorityQueue<>(Collections.reverseOrder());
-        PriorityQueue<Integer> max = new PriorityQueue<>();
+        // PriorityQueue<Integer> max = new PriorityQueue<>();
 
         for (int i = 0; i < n; i++){
             for (int j = 0; j < m; j++){
                 int sum = arr1[i] + arr2[j];
+                min.add(sum);
 
-                if (min.isEmpty() || sum <= min.peek())
-                    min.add(sum);
-                else
-                    max.add(sum);
+                // if (min.isEmpty() || sum <= min.peek())
+                //     min.add(sum);
+                // else
+                //     max.add(sum);
                 
                 if (min.size() > k)
-                    max.add(min.poll());
+                    min.poll();
+                    // max.add(min.poll());
             }
         }
 

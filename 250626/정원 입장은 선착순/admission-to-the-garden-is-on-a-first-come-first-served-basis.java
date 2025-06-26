@@ -21,20 +21,15 @@ public class Main {
         // sum보다  tmp[0]이 크면 sum 초기화
         while (q.size() > 0){
             PriorityQueue<int[]> lst = new PriorityQueue<>(Comparator.comparingInt(l -> l[2]));
-            while (true){
-                if (q.isEmpty()) 
-                    break; 
-                int[] tmp = q.poll();
-                if (tmp[0] > sum){
-                    q.add(tmp);
-                    break ;
-                }
-                lst.add(tmp);
+            while (!q.isEmpty() && q.peek()[0] <= sum) {
+                lst.add(q.poll());
             }
             
             int[] tmp;
             if (lst.size() > 0){
                 tmp = lst.poll();
+                while (!lst.isEmpty())
+                    q.add(lst.poll());
             } else {
                 tmp = q.poll();
                 sum = tmp[0];
@@ -42,9 +37,7 @@ public class Main {
 
             max = Math.max(max, sum - tmp[0]);
             sum += tmp[1];
-
-            while (!lst.isEmpty())
-                q.add(lst.poll());
+            
         }
 
         System.out.println(max);

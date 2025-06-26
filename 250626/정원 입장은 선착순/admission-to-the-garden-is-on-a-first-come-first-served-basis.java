@@ -17,6 +17,8 @@ public class Main {
         int sum = a[0] + a[1];
         int max = 0;
 
+
+        // sum보다  tmp[0]이 크면 sum 초기화
         while (q.size() > 0){
             List<int[]> lst = new ArrayList<>();
             while (true){
@@ -34,8 +36,10 @@ public class Main {
             if (lst.size() > 0){
                 Collections.sort(lst, Comparator.comparingInt(l -> l[2]));
                 tmp = lst.get(0);
-            } else
+            } else {
                 tmp = q.poll();
+                sum = tmp[0];
+            }
 
             max = Math.max(max, sum - tmp[0]);
             sum += tmp[1];

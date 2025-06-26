@@ -19,25 +19,31 @@ public class Main {
 
 
         // sum보다  tmp[0]이 크면 sum 초기화
-        while (q.size() > 0){
-            PriorityQueue<int[]> lst = new PriorityQueue<>(Comparator.comparingInt(l -> l[2]));
+        while (!q.isEmpty()) {
+            int[] best = null;
+            List<int[]> deferred = new ArrayList<>();
+
             while (!q.isEmpty() && q.peek()[0] <= sum) {
-                lst.add(q.poll());
-            }
-            
-            int[] tmp;
-            if (lst.size() > 0){
-                tmp = lst.poll();
-                while (!lst.isEmpty())
-                    q.add(lst.poll());
-            } else {
-                tmp = q.poll();
-                sum = tmp[0];
+                int[] now = q.poll();
+                if (best == null || now[2] < best[2]) {
+                    if (best != null) deferred.add(best);
+                    best = now;
+                } else {
+                    deferred.add(now);
+                }
             }
 
-            max = Math.max(max, sum - tmp[0]);
-            sum += tmp[1];
-            
+            if (best == null) {
+                best = q.poll();       // 강제 시작할 작업
+                sum = best[0];         // sum 초기화
+            }
+
+            max = Math.max(max, sum - best[0]);
+            sum += best[1];
+
+            for (int[] d : deferred) {
+                q.add(d); // deferred 리스트 다시 추가
+            }
         }
 
         System.out.println(max);

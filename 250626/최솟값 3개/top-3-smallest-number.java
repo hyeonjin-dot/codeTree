@@ -21,7 +21,7 @@ public class Main {
             int a = small.poll();
             int b = small.poll();
             int c = small.poll();
-            System.out.println(a * b * c);
+            System.out.println((long)a * b * c);
             small.add(a);
             small.add(b);
             small.add(c);

@@ -20,6 +20,8 @@ public class Main {
         while (q.size() > 0){
             List<int[]> lst = new ArrayList<>();
             while (true){
+                if (q.isEmpty()) 
+                    break; 
                 int[] tmp = q.poll();
                 if (tmp[0] > sum){
                     q.add(tmp);
@@ -37,6 +39,7 @@ public class Main {
 
             max = Math.max(max, sum - tmp[0]);
             sum += tmp[1];
+
             for (int i = 1; i < lst.size(); i++)
                 q.add(lst.get(i));
         }

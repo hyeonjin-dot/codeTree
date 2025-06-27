@@ -28,6 +28,7 @@ public class Main {
                     curr.prev = tmp;
                     tmp.next = curr;
                     tmp.prev = pre;
+                    pre.next = tmp;
                 } else {
                     curr.prev = tmp;
                     tmp.next = curr;
@@ -40,20 +41,17 @@ public class Main {
                     curr.next = tmp;
                     tmp.prev = curr;
                     tmp.next = nex;
+                    nex.prev = tmp;
                 } else {
                     curr.next = tmp;
                     tmp.prev = curr;
                 }
             } else if (idx == 3){
-                if (curr.prev != null){
-                    Node tmp = curr.prev;
-                    curr = tmp;
-                }
+                if (curr.prev != null)
+                    curr = curr.prev;
             } else {
-                if (curr.next != null){
-                    Node tmp = curr.next;
-                    curr = tmp;
-                }
+                if (curr.next != null)
+                    curr = curr.next;
             }
             if (curr.prev == null)
                 System.out.print("(Null) ");

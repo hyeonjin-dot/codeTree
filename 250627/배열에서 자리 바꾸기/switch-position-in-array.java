@@ -87,10 +87,13 @@ public class Main {
                 bNode.next = dNext;
             }
 
+            // 쿼리 처리 내에서 head를 직접 조정하는 부분 추가
+            if (head == aNode) head = cNode;
+            else if (head == cNode) head = aNode;
+
         }
 
         // 결과 출력
-        while (head.prev != null) head = head.prev; // 실제 head로 이동
         while (head != null) {
             System.out.print(head.data + " ");
             head = head.next;

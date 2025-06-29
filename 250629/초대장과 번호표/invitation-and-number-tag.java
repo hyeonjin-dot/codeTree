@@ -20,10 +20,15 @@ public class Main {
         for (int i = 0; i < g; i++){
             int len = sc.nextInt();
             int[] arr = new int[len];
-            for (int j = 0; j < len; j++)
+            boolean hasOne = false;
+            for (int j = 0; j < len; j++){
                 arr[j] = sc.nextInt();
-            
-            s.add(arr[0]);
+                if (arr[j] == 1)
+                    hasOne = true;
+            }
+
+            if (hasOne)
+                s.add(1);
 
             // 몇명이 받았나요?
             if (howMany(len, arr) + 1 == len){
@@ -34,7 +39,7 @@ public class Main {
                 }
             }   
         }
-
+        
         System.out.print(s.size());
     }
 }

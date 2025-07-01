@@ -20,7 +20,7 @@ public class Main {
                     tmp--;
                 }
                 if (tmp == 0)
-                    return ;
+                    break ;
             }
         }
 

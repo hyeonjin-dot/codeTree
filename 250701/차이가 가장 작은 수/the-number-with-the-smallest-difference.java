@@ -16,14 +16,14 @@ public class Main {
             return ;
         }
         
+        TreeSet<Integer> t = new TreeSet<>();
         int min = s.first();
         for (int num : s){
             if (num - min >= m){
-                System.out.print(num - min);
-                return ;
+                t.add(num - min);
             }
         }
         
-
+        System.out.print(t.fist());
     }
 }

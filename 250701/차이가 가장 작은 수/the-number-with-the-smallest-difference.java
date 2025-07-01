@@ -24,6 +24,6 @@ public class Main {
             }
         }
         
-        System.out.print(t.fist());
+        System.out.print(t.first());
     }
 }

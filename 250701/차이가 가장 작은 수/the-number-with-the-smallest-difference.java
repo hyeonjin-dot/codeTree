@@ -1,29 +1,28 @@
 import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int m = sc.nextInt();
-        int[] arr = new int[n];
         TreeSet<Integer> s = new TreeSet<>();
         for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
-            s.add(arr[i]);
+            s.add(sc.nextInt());
         }
 
-        if (s.last() - s.first() < m){
-            System.out.print(-1);
-            return ;
-        }
-        
-        TreeSet<Integer> t = new TreeSet<>();
-        int min = s.first();
-        for (int num : s){
-            if (num - min >= m){
-                t.add(num - min);
+        int ans = Integer.MAX_VALUE;
+
+        for (int x : s) {
+            Integer target = s.ceiling(x + m);
+            if (target != null) {
+                ans = Math.min(ans, target - x);
             }
         }
-        
-        System.out.print(t.first());
+
+        if (ans == Integer.MAX_VALUE) {
+            System.out.println(-1);
+        } else {
+            System.out.println(ans);
+        }
     }
 }

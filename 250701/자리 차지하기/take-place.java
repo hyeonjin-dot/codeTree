@@ -6,21 +6,18 @@ public class Main {
         int m = sc.nextInt();
         int[] arr = new int[n];
         TreeSet<Integer> s = new TreeSet<>();
+        for (int i = 1; i <= m; i++)
+            s.add(i);
+
         for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
-            if (!s.contains(arr[i]))
-                s.add(arr[i]);
+            if (s.contains(arr[i]))
+                s.remove(arr[i]);
             else {
-                int tmp = arr[i];
-                while (tmp > 0){
-                    if (!s.contains(tmp)){
-                        s.add(tmp);
-                        break;
-                    }
-                    tmp--;
-                }
-                if (tmp == 0)
+                if (s.lower(arr[i]) == null)
                     break ;
+                else
+                    s.remove(s.lower(arr[i]));
             }
         }
 

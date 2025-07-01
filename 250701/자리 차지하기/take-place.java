@@ -21,7 +21,7 @@ public class Main {
             }
         }
 
-        System.out.print(s.size());
+        System.out.print(m - s.size());
         // Please write your code here.
     }
 }

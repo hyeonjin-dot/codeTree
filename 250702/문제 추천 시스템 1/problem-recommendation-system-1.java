@@ -5,7 +5,7 @@ public class Main {
         int n = sc.nextInt();
         TreeSet<int[]> s = new TreeSet<>((a,b) -> {
             if (a[1] != b[1]) return b[1] - a[1];
-            return a[0] - b[0];
+            return b[0] - a[0];
         });
         for (int i = 0; i < n; i++) {
             int[] tmp = new int[2];

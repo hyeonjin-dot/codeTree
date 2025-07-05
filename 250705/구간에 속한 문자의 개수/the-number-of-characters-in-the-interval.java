@@ -9,9 +9,9 @@ public class Main {
         int k = sc.nextInt(); // 쿼리 개수
 
         String[] grid = new String[n];
-        int[][] a = new int[n + 1][n + 1];
-        int[][] b = new int[n + 1][n + 1];
-        int[][] c = new int[n + 1][n + 1];
+        int[][] a = new int[n + 1][m + 1];
+        int[][] b = new int[n + 1][m + 1];
+        int[][] c = new int[n + 1][m + 1];
 
         // 누적합 배열 구성
         for (int i = 0; i < n; i++) {

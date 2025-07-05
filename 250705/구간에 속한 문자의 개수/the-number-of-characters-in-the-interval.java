@@ -5,7 +5,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         
         int n = sc.nextInt(); // 격자 크기
-        int m = sc.nextInt(); // 사용되지 않음
+        int m = sc.nextInt(); 
         int k = sc.nextInt(); // 쿼리 개수
 
         String[] grid = new String[n];
@@ -16,7 +16,7 @@ public class Main {
         // 누적합 배열 구성
         for (int i = 0; i < n; i++) {
             grid[i] = sc.next();
-            for (int j = 0; j < n; j++) {
+            for (int j = 0; j < m; j++) {
                 char ch = grid[i].charAt(j);
                 a[i + 1][j + 1] = a[i][j + 1] + a[i + 1][j] - a[i][j];
                 b[i + 1][j + 1] = b[i][j + 1] + b[i + 1][j] - b[i][j];

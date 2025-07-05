@@ -1,41 +1,51 @@
 import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
-        int k = sc.nextInt();
+        
+        int n = sc.nextInt(); // 격자 크기
+        int m = sc.nextInt(); // 사용되지 않음
+        int k = sc.nextInt(); // 쿼리 개수
+
         String[] grid = new String[n];
+        int[][] a = new int[n + 1][n + 1];
+        int[][] b = new int[n + 1][n + 1];
+        int[][] c = new int[n + 1][n + 1];
+
+        // 누적합 배열 구성
         for (int i = 0; i < n; i++) {
             grid[i] = sc.next();
-        }
-        int[] r1 = new int[k];
-        int[] c1 = new int[k];
-        int[] r2 = new int[k];
-        int[] c2 = new int[k];
-        for (int i = 0; i < k; i++) {
-            r1[i] = sc.nextInt() - 1;
-            c1[i] = sc.nextInt() - 1;
-            r2[i] = sc.nextInt() - 1;
-            c2[i] = sc.nextInt() - 1;
-        }
-        
+            for (int j = 0; j < n; j++) {
+                char ch = grid[i].charAt(j);
+                a[i + 1][j + 1] = a[i][j + 1] + a[i + 1][j] - a[i][j];
+                b[i + 1][j + 1] = b[i][j + 1] + b[i + 1][j] - b[i][j];
+                c[i + 1][j + 1] = c[i][j + 1] + c[i + 1][j] - c[i][j];
 
-        for (int i = 0; i < k; i++){
-            int a = 0;
-            int b = 0;
-            int c = 0;
-            for (int x = r1[i]; x <= r2[i]; x++){
-                for (int y = c1[i]; y <= c2[i]; y++){
-                    if (grid[x].charAt(y) == 'a')
-                        a++;
-                    else if (grid[x].charAt(y) == 'b')
-                        b++;
-                    else
-                        c++;
-                }
+                if (ch == 'a') a[i + 1][j + 1]++;
+                else if (ch == 'b') b[i + 1][j + 1]++;
+                else if (ch == 'c') c[i + 1][j + 1]++;
             }
-            System.out.println(a + " " + b + " " + c);
         }
+
+        // 쿼리 처리
+        for (int i = 0; i < k; i++) {
+            int x1 = sc.nextInt();
+            int y1 = sc.nextInt();
+            int x2 = sc.nextInt();
+            int y2 = sc.nextInt();
+
+            // x1, y1부터 x2, y2까지의 알파벳 개수 계산
+            int cntA = getRangeSum(a, x1, y1, x2, y2);
+            int cntB = getRangeSum(b, x1, y1, x2, y2);
+            int cntC = getRangeSum(c, x1, y1, x2, y2);
+
+            System.out.println(cntA + " " + cntB + " " + cntC);
+        }
+    }
+
+    // (x1,y1) ~ (x2,y2)까지의 구간합 구하는 함수
+    public static int getRangeSum(int[][] sum, int x1, int y1, int x2, int y2) {
+        return sum[x2][y2] - sum[x1 - 1][y2] - sum[x2][y1 - 1] + sum[x1 - 1][y1 - 1];
     }
 }

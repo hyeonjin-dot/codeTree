@@ -1,34 +1,45 @@
 import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int[][] grid = new int[n + 1][n + 1];
-        for (int i = 1; i <= n; i++)
-            for (int j = 1; j <= n; j++)
-                grid[i][j] = sc.nextInt();
-        
-        int[][] prexsum = new int[n + 1][n + 1];
+        int[][] grid = new int[n][n];
 
-        for (int i = 1; i <= n; i++)
-            for (int j = 1; j <= n; j++)
-                prexsum[i][j] = prexsum[i - 1][j] + prexsum[i][j - 1] - prexsum[i - 1][j - 1] + grid[i][j];
-        
+        // 입력 받기
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                grid[i][j] = sc.nextInt();
+
         int max = Integer.MIN_VALUE;
 
-        for (int x1 = 1; x1 <= n; x1++) {
-            for (int y1 = 1; y1 <= n; y1++) {
-                for (int x2 = x1; x2 <= n; x2++) {
-                    for (int y2 = y1; y2 <= n; y2++) {
-                        int sum = prexsum[x2][y2] 
-                                - prexsum[x1 - 1][y2] 
-                                - prexsum[x2][y1 - 1] 
-                                + prexsum[x1 - 1][y1 - 1];
-                        max = Math.max(max, sum);
-                    }
+        // 시작 행을 고정
+        for (int row1 = 0; row1 < n; row1++) {
+            // 끝 행을 고정
+            int[] colSum = new int[n]; // 열별 누적합
+            for (int row2 = row1; row2 < n; row2++) {
+                // colSum 업데이트
+                for (int col = 0; col < n; col++) {
+                    colSum[col] += grid[row2][col];
                 }
+
+                // 누적합 배열에서 최대 연속 부분합 구하기 (Kadane’s Algorithm)
+                int currentMax = kadane(colSum);
+                max = Math.max(max, currentMax);
             }
         }
-        System.out.print(max);
+
+        System.out.println(max);
+    }
+
+    // 1차원 배열에서 최대 연속 부분합 구하는 함수
+    public static int kadane(int[] arr) {
+        int maxSum = arr[0];
+        int currentSum = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            currentSum = Math.max(arr[i], currentSum + arr[i]);
+            maxSum = Math.max(maxSum, currentSum);
+        }
+        return maxSum;
     }
 }

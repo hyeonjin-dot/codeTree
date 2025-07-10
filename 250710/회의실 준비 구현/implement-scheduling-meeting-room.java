@@ -9,20 +9,14 @@ public class Main {
             lst[i][1] = sc.nextInt();
         }
         
-        Arrays.sort(lst, (a, b) -> Integer.compare(b[1], a[1]));
+        Arrays.sort(lst, (a, b) -> Integer.compare(a[1], b[1]));
 
         int cnt = 0;
         int last = 0;
-        for (int i = 0; i < n; i++){
-            if (i == 0){
-                last = lst[i][0];
+        for (int i = 0; i < n; i++) {
+            if (lst[i][0] >= last) { // 겹치지 않으면 선택
                 cnt++;
-                continue ;
-            } 
-            
-            if (lst[i][1] <= last){
-                cnt++;
-                last = lst[i][0];
+                last = lst[i][1];
             }
         }
 

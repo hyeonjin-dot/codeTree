@@ -11,7 +11,7 @@ public class Main {
         else {
             n += 5;
             cnt--;
-            if (n % 2 == 0)
+            if (cnt > 0 && n % 2 == 0)
                 System.out.print(cnt + (n / 2));
             else
                 System.out.print(-1);

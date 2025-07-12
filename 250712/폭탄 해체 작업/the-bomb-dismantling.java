@@ -40,19 +40,28 @@ public class Main {
             time = Math.max(time, timeLimits[i]);
         }
 
-        int idx = 1;
+        int idx = time;
         int res = 0;
-        while (idx <= time){
-            if (m.lower(new Pair(idx + 1, 0)) != null){
-                Pair tmp = m.lower(new Pair(idx + 1, 0));
-                // System.out.println(idx + " " + tmp.getTime() + " " + tmp.getValue());
-                if (tmp.getTime() >= idx) {
-                    res += tmp.getValue();
-                    m.remove(tmp);
+
+        while (idx >= 1) {
+            // idx 이하에서 가능한 Pair 모두 가져오기
+            SortedSet<Pair> candidates = m.tailSet(new Pair(idx, 0));
+            Pair best = null;
+
+            for (Pair p : candidates) {
+                if (best == null || p.getValue() > best.getValue()) {
+                    best = p;
                 }
             }
-            idx++;
+
+            if (best != null) {
+                res += best.getValue();
+                m.remove(best);
+            }
+
+            idx--;
         }
+
         
         
         System.out.print(res);

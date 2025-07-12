@@ -5,18 +5,20 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int[] prices = new int[n];
-        int max = 0;
-        int res = 0;
-        for(int i = 0; i < n; i++)
-            prices[i] = sc.nextInt();
 
-        for (int i = 0; i < n - 1; i++){
-            for (int j = i + 1; j < n; j++){
-                max = Math.max(prices[j] - prices[i], max);
-            }
+        int buy = 0;
+        int max = 0;
+        for(int i = 0; i < n; i++){
+            prices[i] = sc.nextInt();
+            if (buy == 0)
+                buy = prices[i];
+            
+            if (buy < prices[i])
+                max = Math.max(prices[i] - buy, max);
+            else if (buy > prices[i])
+                buy = prices[i];
         }
-        
+
         System.out.print(max);
-        // Please write your code here.
     }
 }

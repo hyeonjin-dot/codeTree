@@ -1,70 +1,50 @@
 import java.util.*;
 
-class Pair implements Comparable<Pair> {
-    int time;
-    int value;
+class Bomb {
+    int score;
+    int deadline;
 
-    public Pair(int time, int value){
-        this.time = time;
-        this.value = value;
+    public Bomb(int score, int deadline) {
+        this.score = score;
+        this.deadline = deadline;
     }
-
-    @Override
-    public int compareTo(Pair o) {
-        if (this.time != o.time) return Integer.compare(this.time, o.time);
-        return Integer.compare(this.value, o.value);
-    }
-
-    public int getValue(){
-        return this.value;
-    }
-
-    public int getTime(){
-        return this.time;
-    }
-
 }
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int[] scores = new int[n];
-        int[] timeLimits = new int[n];
-        TreeSet<Pair> m = new TreeSet<>();
-        int time = 0;
+
+        List<Bomb> bombs = new ArrayList<>();
+        int maxTime = 0;
+
         for (int i = 0; i < n; i++) {
-            scores[i] = sc.nextInt();
-            timeLimits[i] = sc.nextInt();
-            m.add(new Pair(timeLimits[i], scores[i]));
-            time = Math.max(time, timeLimits[i]);
+            int score = sc.nextInt();
+            int deadline = sc.nextInt();
+            bombs.add(new Bomb(score, deadline));
+            maxTime = Math.max(maxTime, deadline);
         }
 
-        int idx = time;
+        // 마감 시간 내림차순 정렬
+        bombs.sort((a, b) -> b.deadline - a.deadline);
+
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder()); // 점수 max heap
         int res = 0;
+        int idx = 0;
 
-        while (idx >= 1) {
-            // idx 이하에서 가능한 Pair 모두 가져오기
-            SortedSet<Pair> candidates = m.tailSet(new Pair(idx, 0));
-            Pair best = null;
-
-            for (Pair p : candidates) {
-                if (best == null || p.getValue() > best.getValue()) {
-                    best = p;
-                }
+        for (int t = maxTime; t >= 1; t--) {
+            // 마감 시간 >= t인 폭탄들 pq에 추가
+            while (idx < n && bombs.get(idx).deadline >= t) {
+                pq.offer(bombs.get(idx).score);
+                idx++;
             }
 
-            if (best != null) {
-                res += best.getValue();
-                m.remove(best);
+            // 점수 가장 높은 것 하나 해체
+            if (!pq.isEmpty()) {
+                res += pq.poll();
             }
-
-            idx--;
         }
 
-        
-        
-        System.out.print(res);
-
+        System.out.println(res);
     }
 }

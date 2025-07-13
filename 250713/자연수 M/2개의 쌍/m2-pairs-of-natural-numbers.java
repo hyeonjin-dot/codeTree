@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        Map<Integer, Integer> map = new HashMap<>();
+        TreeMap<Integer, Integer> map = new TreeMap<>();
         int total = 0;
 
         for (int i = 0; i < n; i++) {
@@ -14,7 +14,7 @@ public class Main {
             total += count;
         }
 
-        int[] keys = map.keySet().stream().mapToInt(i -> i).sorted().toArray();
+        int[] keys = map.keySet().stream().mapToInt(i -> i).toArray();
         int left = 0, right = keys.length - 1;
         int leftCount = map.get(keys[left]);
         int rightCount = map.get(keys[right]);

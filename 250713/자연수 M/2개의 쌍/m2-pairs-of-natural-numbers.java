@@ -4,38 +4,31 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        TreeMap<Integer, Integer> map = new TreeMap<>();
+        // TreeMap<Integer, Integer> map = new TreeMap<>();
         int total = 0;
-
+        int[][] lst = new int[n][2];
         for (int i = 0; i < n; i++) {
-            int count = sc.nextInt();
-            int value = sc.nextInt();
-            map.put(value, map.getOrDefault(value, 0) + count);
-            total += count;
+            lst[i][1] = sc.nextInt(); // cnt
+            lst[i][0] = sc.nextInt(); // value
+            total += lst[i][1];
         }
 
-        int[] keys = map.keySet().stream().mapToInt(i -> i).toArray();
-        int left = 0, right = keys.length - 1;
-        int leftCount = map.get(keys[left]);
-        int rightCount = map.get(keys[right]);
+        int[] l = new int[total];
+        int idx = 0;
+        int cnt = 0;
+        for (int i = 0; i < total; i++){
+            l[i] = lst[idx][0];
+            cnt++;
+            if (cnt >= lst[idx][1]){
+                cnt = 0;
+                idx++;
+            }
+        }
+        Arrays.sort(l);
         int max = 0;
-
-        for (int i = 0; i < total / 2; i++) {
-            int pairSum = keys[left] + keys[right];
-            max = Math.max(max, pairSum);
-
-            leftCount--;
-            rightCount--;
-
-            if (leftCount == 0 && left < right) {
-                left++;
-                leftCount = map.get(keys[left]);
-            }
-
-            if (rightCount == 0 && left < right) {
-                right--;
-                rightCount = map.get(keys[right]);
-            }
+        for (int i = 0; i < total / 2; i++){
+            int sum = l[i] + l[total - i - 1];
+            max = Math.max(max, sum);
         }
 
         System.out.println(max);

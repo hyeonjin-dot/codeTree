@@ -13,22 +13,27 @@ public class Main {
             total += lst[i][1];
         }
 
-        int[] l = new int[total];
-        int idx = 0;
-        int cnt = 0;
-        for (int i = 0; i < total; i++){
-            l[i] = lst[idx][0];
-            cnt++;
-            if (cnt >= lst[idx][1]){
-                cnt = 0;
-                idx++;
-            }
-        }
-        Arrays.sort(l);
+        Arrays.sort(lst, (a, b) -> Integer.compare(a[0], b[0]));
+
+        int leftIdx = 0;
+        int rightIdx = n - 1;
+        int leftCnt = lst[leftIdx][1];
+        int rightCnt = lst[rightIdx][1];
         int max = 0;
         for (int i = 0; i < total / 2; i++){
-            int sum = l[i] + l[total - i - 1];
+            int sum = lst[leftIdx][0] + lst[rightIdx][0];
             max = Math.max(max, sum);
+            leftCnt--;
+            rightCnt--;
+
+            if (leftCnt == 0){
+                leftIdx++;
+                leftCnt = lst[leftIdx][1];
+            }
+            if (rightCnt == 0){
+                rightIdx--;
+                rightCnt = lst[rightIdx][1];
+            }
         }
 
         System.out.println(max);

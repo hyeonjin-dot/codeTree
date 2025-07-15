@@ -16,8 +16,8 @@ public class Main {
             sb.append(s);
         }
         String str = sb.toString();
-        int cnt = 0;
-        int back = 0;
+        long cnt = 0;
+        long back = 0;
         for (int i = str.length() - 1; i >= 0; i--){
             if (str.charAt(i) == ')')
                 back++;

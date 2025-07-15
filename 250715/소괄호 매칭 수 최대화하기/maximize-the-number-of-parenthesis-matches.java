@@ -17,13 +17,12 @@ public class Main {
         }
         String str = sb.toString();
         int cnt = 0;
-        for (int i = 0; i < str.length() - 1; i++){
-            if (str.charAt(i) == '('){
-                for (int j = i + 1; j < str.length(); j++){
-                    if (str.charAt(j) == ')')
-                        cnt++;
-                }
-            }
+        int back = 0;
+        for (int i = str.length() - 1; i >= 0; i--){
+            if (str.charAt(i) == ')')
+                back++;
+            if (str.charAt(i) == '(')
+                cnt += back;
         }
 
         System.out.print(cnt);

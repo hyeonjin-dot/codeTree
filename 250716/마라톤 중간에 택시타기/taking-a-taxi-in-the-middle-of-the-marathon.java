@@ -1,39 +1,40 @@
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
+
         int[] x = new int[n];
         int[] y = new int[n];
         for (int i = 0; i < n; i++) {
             x[i] = sc.nextInt();
             y[i] = sc.nextInt();
         }
-        int[] l = new int[n];
-        int[] r = new int[n];
 
-        for (int i = 0; i < n; i++){
-            if (i == 0){
-                l[0] = 0;
-                r[n - i - 1] = 0;
-                continue;
-            }
-            l[i] = Math.abs(x[i] - x[i - 1]) + Math.abs(y[i] - y[i - 1]);
-            r[n - i - 1] = Math.abs(x[n - i - 1] - x[n - i]) + Math.abs(y[n - i - 1] - y[n - i]);
+        // 1. 전체 경로 거리 저장
+        int[] dist = new int[n - 1];
+        for (int i = 0; i < n - 1; i++) {
+            dist[i] = Math.abs(x[i] - x[i + 1]) + Math.abs(y[i] - y[i + 1]);
+        }
+
+        // 2. 누적합 구하기
+        int[] prefixSum = new int[n];
+        for (int i = 1; i < n; i++) {
+            prefixSum[i] = prefixSum[i - 1] + dist[i - 1];
         }
 
         int min = Integer.MAX_VALUE;
 
-        for (int i = 1; i < n - 1; i++){ // 뛰어 넘을 거
-            int sum = 0;
-            for (int j = 0; j < i; j++)
-                sum += l[j];
-            for (int j = n - 1; j > i; j--)
-                sum += r[j];
-            sum += (Math.abs(x[i - 1] - x[i + 1]) + Math.abs(y[i - 1] - y[i + 1]));
-            min = Math.min(sum, min);
+        // 3. i번째 점을 생략 (1 <= i <= n-2)
+        for (int i = 1; i < n - 1; i++) {
+            int total = prefixSum[n - 1];
+            int skip = dist[i - 1] + dist[i];
+            int direct = Math.abs(x[i - 1] - x[i + 1]) + Math.abs(y[i - 1] - y[i + 1]);
+            int newTotal = total - skip + direct;
+            min = Math.min(min, newTotal);
         }
 
-        System.out.print(min);
+        System.out.println(min);
     }
 }

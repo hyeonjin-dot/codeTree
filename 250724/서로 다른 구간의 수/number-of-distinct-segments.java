@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.*;
 
 class Segment {
     int x1, x2;
@@ -28,15 +26,23 @@ class Point implements Comparable<Point> {
 
 public class Main {
     public static void main(String[] args) {
-        Segment[] segments = new Segment[]{
-            new Segment(1, 5),
-            new Segment(4, 7),
-            new Segment(3, 6),
-            new Segment(9, 13),
-            new Segment(8, 15),
-            new Segment(12, 16),
-        };
-        int n = 6;
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        // Segment[] segments = new Segment[]{
+        //     new Segment(1, 5),
+        //     new Segment(4, 7),
+        //     new Segment(3, 6),
+        //     new Segment(9, 13),
+        //     new Segment(8, 15),
+        //     new Segment(12, 16),
+        // };
+        Segment[] segments = new Segment[n];
+        for (int i = 0; i < n; i++){
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            segments[i] = new Segment(x, y);
+        }
+
         
         // 각 선분을 두 지점으로 나눠 담은 뒤,
         // 정렬해줍니다.

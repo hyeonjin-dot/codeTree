@@ -6,7 +6,7 @@ public class Main {
         int k = sc.nextInt();
         int[] arr = new int[n];
         Set<Integer> s = new HashSet<>();
-        int max = 0;
+        int max = -1;
         for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
             if (s.contains(arr[i]))
@@ -19,8 +19,5 @@ public class Main {
         }
 
         System.out.print(max);
-
-
-        
     }
 }

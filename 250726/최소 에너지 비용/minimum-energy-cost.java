@@ -17,7 +17,7 @@ public class Main {
 
         long sum = 0;
         for (int i = 0; i < n - 1; i++)
-            sum += (dist[i] * lowCost[i]);
+            sum += (long)(dist[i] * lowCost[i]);
 
         System.out.print(sum);
     }

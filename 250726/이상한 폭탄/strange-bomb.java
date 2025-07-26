@@ -14,8 +14,8 @@ public class Main {
             else
                 s.add(arr[i]);
             
-            if (i >= 3)
-                s.remove(arr[i - 3]);
+            if (i >= k)
+                s.remove(arr[i - k]);
         }
 
         System.out.print(max);

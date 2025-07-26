@@ -15,7 +15,7 @@ public class Main {
         for (int i = 1; i < n; i++)
             lowCost[i] = Math.min(lowCost[i - 1], cost[i]);
 
-        int sum = 0;
+        long sum = 0;
         for (int i = 0; i < n - 1; i++)
             sum += (dist[i + 1] * lowCost[i]);
 

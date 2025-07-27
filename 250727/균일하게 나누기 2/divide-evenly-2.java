@@ -40,8 +40,8 @@ public class Main {
             maxY = Math.max(maxY, y[i]);
         }
         int res = 1000;
-        for (int i = minX + 1; i < maxX; i = i + 2){
-            for (int j = minY + 1; j < maxY; j = j + 2)
+        for (int i = minX - 1; i < maxX; i = i + 2){
+            for (int j = minY - 1; j < maxY; j = j + 2)
                 res = Math.min(res, count(i, j));
         }        
         

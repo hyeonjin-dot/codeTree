@@ -1,6 +1,32 @@
 import java.util.*;
 
 public class Main {
+
+    public static int lowerBound(int[] arr, int x) {
+        int left = 0, right = arr.length;
+        while (left < right) {
+            int mid = (left + right) / 2;
+            if (arr[mid] <= x)
+                left = mid + 1;
+            else
+                right = mid;
+        }
+        return left;
+    }
+
+    // upper_bound: arr[i] > x 가 처음 나오는 위치
+    public static int upperBound(int[] arr, int x) {
+        int left = 0, right = arr.length;
+        while (left < right) {
+            int mid = (left + right) / 2;
+            if (arr[mid] < x)
+                left = mid + 1;
+            else
+                right = mid;
+        }
+        return left;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -14,16 +40,7 @@ public class Main {
         for (int i = 0; i < m; i++) {
             a = sc.nextInt();
             b = sc.nextInt();
-            if (points[n - 1] < a || points[0] > b)
-                System.out.println(0);
-            else {
-                int cnt = 0;
-                for (int num : points){
-                    if (num >= a && num <= b)
-                        cnt++;
-                }
-                System.out.println(cnt);
-            }
+            System.out.println(lowerBound(points, b) - upperBound(points, a));
         }
         
         // Please write your code here.
